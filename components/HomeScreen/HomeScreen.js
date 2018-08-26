@@ -23,18 +23,18 @@ export default class HomeScreen extends React.Component {
   render() {
 
     let theComponent;
-      // {this.state.predictions} ? 
-      // theComponent = <MyCamera getPredictions={this.getPredictions} />
-      // : theComponent = <Modal />
+      !this.state.predictions ? 
+      theComponent = <MyCamera getPredictions={this.getPredictions} />
+      : theComponent = <Modal predictions={this.state.predictions} />
 
-      if (!this.state.predictions) {
-        alert("No state of Predictions")
-        theComponent = <MyCamera getPredictions={this.getPredictions} />
-      } else {  
-        alert("State!") 
-        // console.log(this.state.predictions)
-        theComponent = <Modal predictions={this.state.predictions}/>
-      }
+      // if (!this.state.predictions) {
+      //   alert("No state of Predictions")
+      //   theComponent = <MyCamera getPredictions={this.getPredictions} />
+      // } else {  
+      //   alert("State!") 
+      //   // console.log(this.state.predictions)
+      //   theComponent = <Modal predictions={this.state.predictions}/>
+      // }
 
 
 
