@@ -3,12 +3,27 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import MyCamera from './Camera';
 
 export default class HomeScreen extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      predictions: [],
+    }
+    this.getPredictions = this.getPredictions.bind(this);
+  }
+
+
+  getPredictions(clarifaiData) {
+    this.setState({predictions: clarifaiData})
+    
+  }
+
+
   render() {
     return (
       <View style={styles.container}>
-       
-
-        <MyCamera  />
+      
+        <MyCamera getPredictions={this.getPredictions} />
         
       </View>
   )}
