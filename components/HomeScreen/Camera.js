@@ -50,6 +50,7 @@ export default class MyCamera extends React.Component {
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);    
     this.setState({ predictions: predictions.outputs[0].data.concepts});
+    alert("We are here in Camera!")
     this.props.getPredictions(predictions);
   };
 
