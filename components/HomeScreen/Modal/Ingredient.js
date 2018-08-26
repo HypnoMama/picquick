@@ -1,14 +1,33 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Ingredient = (props) => {
-  return (
+export default class Ingredient extends React.Component {
 
-    <View>
-      <Text>{props.item.name}</Text>
-      <Text>{props.item.value}</Text>
-    </View>
-  )
+  itemName = this.props.item
+  
+
+  filterValues(item) {
+    return item.value > 0.7 ?
+    <Text>{item.name}:  {item.value}</Text>
+    : null
+    
+    // return <Text>{itemName}</Text>
+  }
+
+  render () {
+
+    return (
+
+      <View>
+        {this.filterValues(this.itemName)}
+        
+      </View>
+    )
+
+  }
+
+  
 }
 
-export default Ingredient;
+
+
