@@ -1,11 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
-import Swipeable from 'react-native-swipeable';
+import Swipeout from 'react-native-swipeout';
+// import Card from '../Card';
+
+const swipeButton = [
+  {
+    text: 'Delete'
+  }
+]
 
 export default class Ingredient extends React.Component {
 
   itemName = this.props.item
   
+  // deleteItems = () => {
+  //   this.swipeable.delete
+  // }
 
   filterValues(item) {
     return item.value > 0.7 ?
@@ -17,13 +27,14 @@ export default class Ingredient extends React.Component {
 
     return (
 
-      <View >
-        <Swipeable>
-        {this.filterValues(this.itemName)}
-        </Swipeable>
+      <Swipeout right={swipeButton}>
+        <View >        
+          {this.filterValues(this.itemName)}
+        </View>
+      </Swipeout>
         
         
-      </View>
+      
     )
 
   }
