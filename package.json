@@ -9,9 +9,13 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "clarifai": "^2.8.1",
     "expo": "^29.0.0",
+    "express": "^4.16.3",
     "react": "16.3.1",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz"
-  }
+    "react-native": "https://github.com/expo/react-native/archive/sdk-29.0.0.tar.gz",
+    "react-native-swipeable": "^0.6.0"
+  },
+  "proxy": "http://localhost:5000/"
 }
