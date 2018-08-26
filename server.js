@@ -4,7 +4,7 @@ const bodyParser  = require("body-parser");
 const app         = express();
 
 app.listen(PORT, () => {
-  console.log(`Listen on port: ${port}`);
+  console.log(`Listen on port: ${PORT}`);
 });
 
 app.get('/express_backend', (req, res) => {
