@@ -5,8 +5,8 @@ const Ingredient = (props) => {
   return (
 
     <View>
-      <Text>{this.props.name}</Text>
-      {/* <Text>{this.props.value}</Text> */}
+      <Text>{props.item.name}</Text>
+      <Text>{props.item.value}</Text>
     </View>
   )
 }
