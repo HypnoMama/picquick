@@ -8,7 +8,7 @@ export default class Modal extends React.Component {
 
 
   renderItems(listItems) {;
-    return listItems.map(listItem => <Text>{listItem.name}</Text>);    
+    return listItems.map(listItem => <Text key={listItem.value}>{listItem.name}</Text>);    
   }
 
   render() {
@@ -27,7 +27,7 @@ export default class Modal extends React.Component {
       <View >
       
         <Text style={{paddingTop: 50}}>Hello I am a Modal!!!</Text>
-        <Text>Booll</Text>
+        <Text>yahoo</Text>
         {this.renderItems(this.listItems)}
         {/* <Text>{console.log({this.props.predictions})</Text> */}
       </View>
