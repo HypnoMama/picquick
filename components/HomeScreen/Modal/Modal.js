@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import Header from '../../Header';
+import Ingredient from './Ingredient';
+
 
 export default class Modal extends React.Component {
 
@@ -8,7 +9,7 @@ export default class Modal extends React.Component {
 
 
   renderItems(listItems) {;
-    return listItems.map(listItem => <Text key={listItem.value}>{listItem.name}</Text>);    
+    return listItems.map(listItem => <Ingredient item={listItem} key={listItem.value} />);    
   }
 
   render() {
