@@ -6,13 +6,30 @@ import Ingredient from './Ingredient';
 
 export default class Modal extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      deletedRowKey: null,
+    }
+  }
+ 
+  refreshFlatList(deletedKey) {
+    this.setState((prevState) => {
+      return {
+        deletedRowKey: deletedKey
+      }
+    })
+  } 
+
   listItems = this.props.predictions.outputs[0].data.concepts;
   _keyExtractor = (item, index) => item.id;
 
+ 
 
-  renderItems(listItems) {
-    return listItems.map(listItem => <Ingredient item={listItem} key={listItem.value} />);    
-  }
+
+  // renderItems(listItems) {
+  //   return listItems.map(listItem => <Ingredient item={listItem} key={listItem.value} />);    
+  // }
 
   render() {
    
@@ -26,7 +43,7 @@ export default class Modal extends React.Component {
           data={this.listItems}
           keyExtractor={this._keyExtractor}
           extraData={this.state}
-          renderItem={({item}) => (<Ingredient item={item} />)}
+          renderItem={({item, index}) => (<Ingredient item={item} allItems={this.listItems} index={index} parentFlatList={this} />)}
         
         />
         {/* {this.renderItems(this.listItems)} */}
