@@ -14,13 +14,11 @@ export default class RecipeCard extends React.Component {
 
     console.log(this.props.data)
 
-    let recipes = this.props.data.hits
-    let recipeList = recipes.map( (each) => 
-      <Card title={each.recipe.label}>
+    let recipes = this.props.data.hits;
+    let recipeList = recipes.map( (each, index) => {
+      return <Card title={each.recipe.label} key={index}>
 
-        <Text style={{marginBottom: 10}}>
-          Hello
-        </Text>
+        <RecipeIngredients data={each.recipe.ingredients}/>
 
         <Button
           icon={<Icon name='code' color='#ffffff' />}
@@ -29,19 +27,36 @@ export default class RecipeCard extends React.Component {
           title='View Recipe' 
         />
 
-      </Card>);
-    let text = `${this.props.data.hits[0].recipe.ingredients[0].text}`
+      </Card>});
 
     return(
 
-    <View>
+      <View>
 
-      {recipeList}
+        {recipeList}
 
-    </View>
-
+      </View>
     )
+  }
+}
 
+export class RecipeIngredients extends React.Component {
+
+  constructor(props){
+    super(props);
   }
 
+  render() {
+
+    let ingredientList = this.props.data;
+    let ingredientItem = ingredientList.map( (each, index) => {
+      return <Text key={index}>{each.text}</Text>
+    });
+
+    return (
+      <View>
+        {ingredientItem}
+      </View>
+    )
+  }
 }
