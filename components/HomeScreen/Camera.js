@@ -94,22 +94,21 @@ export default class MyCamera extends React.Component {
                   )}
                 />
               </View>
+
               <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignItems: 'center',
-                  backgroundColor: 'red',
-                  height: '10%',
-                  padding: '2%'
-                }}
+                style={styles.cameraButton}
                 onPress={this.detect}
               >
                 <Text style={{ fontSize: 30, color: 'white', padding: 15 }}>
                   {' '}Take Photo{' '}
                 </Text>
+              
               </TouchableOpacity>
+            
             </View>
+          
           </Camera>
+        
         </View>
       );
     }
@@ -123,7 +122,13 @@ const styles = StyleSheet.create({
   },
   name: {
     fontFamily: 'Verdana',
-    fontSize: 18
+    fontSize: 18,
+  },
+  cameraButton: {
+    flex: 0.1,
+    alignItems: 'center',
+    backgroundColor: 'red',
+    height: '10%',
+    padding: '2%',
   }
-  
 });
