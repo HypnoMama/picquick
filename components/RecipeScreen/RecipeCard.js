@@ -1,16 +1,25 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
+import { View, TouchableOpacity, Text, ScrollView, StyleSheet, Image, Alert } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Review from './Rating';
-
-const users = [
- {
-    name: 'brynn',
-    avatar: 'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'
- },
-]
+import ApiKeys from '../../ApiKeys';
 
 export default class RecipeCard extends React.Component {
+
+    handlePress = async () => {
+    let response = await fetch(
+      `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}&from=0&to=4`
+    )
+    .then( (response) => response.json())
+    .then( (responseJson) => {
+      Alert.alert("Recipes: " + responseJson.hits[0].recipe.label);
+      })
+
+    .catch((error) => {
+      //Render an error page instead
+      console.error(error);
+  });
+}
 
   render() {
 
@@ -33,6 +42,14 @@ export default class RecipeCard extends React.Component {
 
       </Card>
     </View>
+
+          <View style={{paddingTop: 50, paddingLeft: 50 }}>
+        <Text> Edamam Test </Text>
+        <TouchableOpacity onPress={this.handlePress.bind(this)}>
+          <Text style={{paddingTop: 50, paddingLeft: 50, color: '#FF0000'}}> Click me for recipes</Text>
+        </TouchableOpacity>
+      </View> 
+    );
 
     )
 
