@@ -15,11 +15,9 @@ export default class HomeScreen extends React.Component {
     this.getPredictions = this.getPredictions.bind(this);
   }
 
-
   getPredictions(clarifaiData) {
     this.setState({predictions: clarifaiData})   
   }
-
 
   render() {
 
@@ -34,7 +32,6 @@ export default class HomeScreen extends React.Component {
 
         {theComponent}
         {/*{<RecipeScreen />*/}
-
     
       </View>
   )}
@@ -45,5 +42,4 @@ const styles = StyleSheet.create ({
     width: '100%',
     height: '100%', 
   }
-
 })
