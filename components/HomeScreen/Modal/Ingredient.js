@@ -9,7 +9,7 @@ export default class Ingredient extends React.Component {
     this.state={
       activeRowKey: null,
     }
-
+  }
 
   const leftContent = <Text>Delete</Text>;
  
@@ -77,6 +77,7 @@ export default class Ingredient extends React.Component {
     )
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {   
