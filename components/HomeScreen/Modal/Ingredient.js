@@ -1,9 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-// import Card from '../Card';
-
-
 
 export default class Ingredient extends React.Component {
 
@@ -13,7 +10,8 @@ export default class Ingredient extends React.Component {
       activeRowKey: null,
     }
 
-  }
+
+  const leftContent = <Text>Delete</Text>;
  
   itemName = this.props.item
  
@@ -77,10 +75,7 @@ export default class Ingredient extends React.Component {
         
       
     )
-
   }
-
-  
 }
 
 const styles = StyleSheet.create({

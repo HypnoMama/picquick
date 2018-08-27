@@ -3,6 +3,7 @@ import { View, Text, FlatList } from 'react-native';
 import Ingredient from './Ingredient';
 
 
+
 export default class Modal extends React.Component {
 
   constructor(props){
@@ -10,6 +11,12 @@ export default class Modal extends React.Component {
     this.state = {
       deletedRowKey: null,
     }
+  listItems = this.props.predictions.outputs[0].data.concepts;
+  _keyExtractor = (item, index) => item.id;
+
+
+  renderItems(listItems) {
+    return listItems.map(listItem => <Ingredient item={listItem} key={listItem.value} />);    
   }
  
   refreshFlatList(deletedKey) {
@@ -29,7 +36,6 @@ export default class Modal extends React.Component {
 
     return (
       <View >
- 
         <FlatList 
           data={this.listItems}
           keyExtractor={this._keyExtractor}
