@@ -15,8 +15,7 @@ export default class RecipeCard extends React.Component {
           type="star"
           fractions={1}
           startingValue={0}
-          readonly
-          imageSize={40}
+          imageSize={20}
           onFinishRating={this.ratingCompleted}
           style={{ paddingVertical: 10 }}
         />
