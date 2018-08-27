@@ -6,12 +6,12 @@ export default class Ingredient extends React.Component {
 
   constructor(props){
     super(props);
-    this.state={
+    this.state = {
       activeRowKey: null,
     }
   }
 
-  const leftContent = <Text>Delete</Text>;
+ 
  
   itemName = this.props.item
  
