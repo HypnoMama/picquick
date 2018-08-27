@@ -37,8 +37,6 @@ export default class RecipeScreen extends React.Component {
       )
     }
 
-    let cards;
-
     return(
 
       <ScrollView>
