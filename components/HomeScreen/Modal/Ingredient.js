@@ -1,22 +1,22 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, TouchableHighlight, Alert } from 'react-native';
 import Swipeout from 'react-native-swipeout';
 // import Card from '../Card';
 
-const swipeButton = [
-  {
-    text: 'Delete'
-  }
-]
+
 
 export default class Ingredient extends React.Component {
 
-  itemName = this.props.item
-  
-  // deleteItems = () => {
-  //   this.swipeable.delete
-  // }
+  constructor(props){
+    super(props);
+    this.state={
+      activeRowKey: null,
+    }
 
+  }
+ 
+  itemName = this.props.item
+ 
   filterValues(item) {
     return item.value > 0.7 ?
    <Text style={styles.container}>{item.name}:  {item.value}</Text>
@@ -25,9 +25,50 @@ export default class Ingredient extends React.Component {
 
   render () {
 
+    const swipeSettings = {
+      autoClose: true,
+      onClose: (secId, rowId, direction) => {
+        if(this.state.activeRowKey != null){
+          this.setState({ activeRowKey: null })
+        }
+      },
+      onOpen: (secId, rowId, direction) => {
+        this.setState({ activeRowKey: this.props.item.key})
+      },
+      right: [
+        {
+          
+          onPress: () => {
+            const deletingRow = this.state.activeRowKey;
+            Alert.alert(
+              'Alert', 
+              'Are you sure you want to delete?',
+              [
+                {text: 'No', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                {text: 'Yes', onPress: () => {
+                  
+                  this.props.allItems.splice(this.props.index, 1);
+                  alert('hi')
+                  this.props.parentFlatList.refreshFlatList(deletingRow);
+                  
+                }
+                  
+                },
+              ],
+              { cancelable: true }
+            );
+          },
+          text: 'Delete',
+          type: 'delete',
+        }
+      ],
+      rowId: this.props.index,
+      sectionId: 1
+    }
+
     return (
 
-      <Swipeout right={swipeButton}>
+      <Swipeout {...swipeSettings} >
         <View >        
           {this.filterValues(this.itemName)}
         </View>
@@ -44,7 +85,6 @@ export default class Ingredient extends React.Component {
 
 const styles = StyleSheet.create({
   container: {   
-    width: '25%',
     height: 50,
     backgroundColor: '#68BED9',
     borderColor: '#4292A8',
@@ -59,6 +99,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 1,
+    alignItems: 'stretch',
 
   }
 })
