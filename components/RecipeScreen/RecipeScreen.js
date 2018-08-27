@@ -4,5 +4,13 @@ import Header from '../Header';
 
 export default class RecipeScreen extends React.Component {
 
+  render() {
+
+    return(
+
+
+    )
+
+  }
 
 }
