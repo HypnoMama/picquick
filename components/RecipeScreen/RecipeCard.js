@@ -14,16 +14,12 @@ export default class RecipeCard extends React.Component {
 
     console.log(this.props.data)
 
-    let text = `${this.props.data.hits[0].recipe.ingredients[0].text}`
-
-    return(
-
-    <View>
-
-      <Card title={this.props.data.hits[0].recipe.label}>
+    let recipes = this.props.data.hits
+    let recipeList = recipes.map( (each) => 
+      <Card title={each.recipe.label}>
 
         <Text style={{marginBottom: 10}}>
-          {text}
+          Hello
         </Text>
 
         <Button
@@ -33,9 +29,14 @@ export default class RecipeCard extends React.Component {
           title='View Recipe' 
         />
 
-        <Review />
+      </Card>);
+    let text = `${this.props.data.hits[0].recipe.ingredients[0].text}`
 
-      </Card>
+    return(
+
+    <View>
+
+      {recipeList}
 
     </View>
 
