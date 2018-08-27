@@ -11,6 +11,8 @@ export default class Modal extends React.Component {
     this.state = {
       deletedRowKey: null,
     }
+  }
+  
   listItems = this.props.predictions.outputs[0].data.concepts;
   _keyExtractor = (item, index) => item.id;
 

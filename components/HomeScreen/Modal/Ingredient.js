@@ -9,9 +9,7 @@ export default class Ingredient extends React.Component {
     this.state={
       activeRowKey: null,
     }
-
-
-  const leftContent = <Text>Delete</Text>;
+  }
  
   itemName = this.props.item
  
