@@ -11,12 +11,10 @@ export default class Ingredient extends React.Component {
     }
   }
 
- 
- 
   itemName = this.props.item
  
   filterValues(item) {
-    return item.value > 0.7 ?
+    return item.value > 0.8 ?
    <Text style={styles.container}>{item.name}:  {item.value}</Text>
     : null
   }
@@ -80,6 +78,10 @@ export default class Ingredient extends React.Component {
 
 
 const styles = StyleSheet.create({
+  flexStyle: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   container: {   
     height: 50,
     backgroundColor: '#68BED9',
