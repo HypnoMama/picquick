@@ -11,6 +11,7 @@ export default class Ingredient extends React.Component {
     }
   }
 
+ 
   itemName = this.props.item
  
   filterValues(item) {
@@ -101,6 +102,5 @@ const styles = StyleSheet.create({
 
   }
 })
-
 
 

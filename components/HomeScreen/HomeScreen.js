@@ -1,8 +1,10 @@
+
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../Header';
 import MyCamera from './Camera';
 import ModalScreen from './Modal/Modal';
+import RecipeScreen from './../RecipeScreen/RecipeScreen';
 
 export default class HomeScreen extends React.Component {
 
@@ -14,11 +16,9 @@ export default class HomeScreen extends React.Component {
     this.getPredictions = this.getPredictions.bind(this);
   }
 
-
   getPredictions(clarifaiData) {
     this.setState({predictions: clarifaiData})   
   }
-
 
   render() {
 
@@ -32,6 +32,7 @@ export default class HomeScreen extends React.Component {
       <Header />
 
         {theComponent}
+        {/*{<RecipeScreen />*/}
     
       </View>
   )}
@@ -42,5 +43,4 @@ const styles = StyleSheet.create ({
     width: '100%',
     height: '100%', 
   }
-
 })

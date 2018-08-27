@@ -119,6 +119,7 @@ export default class ModalScreen extends React.Component {
     )
   }
 }
+<<<<<<< HEAD
 
 const styles = StyleSheet.create ({
   container: {
@@ -147,3 +148,5 @@ const styles = StyleSheet.create ({
     backgroundColor: 'mediumseagreen'
   }
 })
+=======
+>>>>>>> master
