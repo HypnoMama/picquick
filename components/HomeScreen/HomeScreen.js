@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../Header';
 import MyCamera from './Camera';
 import Modal from './Modal/Modal';
-import RecipeCard from './../RecipeScreen/RecipeCard';
+import RecipeScreen from './../RecipeScreen/RecipeScreen';
 
 export default class HomeScreen extends React.Component {
 

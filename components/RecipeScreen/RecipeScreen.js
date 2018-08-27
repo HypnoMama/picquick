@@ -16,7 +16,6 @@ export default class RecipeScreen extends React.Component {
     return fetch(`https://api.edamam.com/search?q=chicken&app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
       .then( (response) => response.json())
       .then( (responseJson) => {
-        console.log(responseJson);
         this.setState({
           isLoading: false,
           dataSource: responseJson,
@@ -33,18 +32,18 @@ export default class RecipeScreen extends React.Component {
     if(this.state.isLoading){
       return(
         <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
+          <ActivityIndicator />
         </View>
       )
     }
 
+    let cards;
+
     return(
 
-    <View style={styles.container}>
-      <Header />
+      <View>
 
-        {/*{theComponent}*/}
-        <RecipeCard />
+        <RecipeCard data={this.state.dataSource}/>
     
       </View>
 
