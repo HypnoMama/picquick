@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
-import { Card, ListItem, Button, Icon } from 'react-native-elements';
+import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Header from '../Header';
 
 const users = [
@@ -16,18 +16,28 @@ export default class RecipeCard extends React.Component {
 
     return(
 
-      // implemented with Text and Button as children
     <View>
       <Card
-        title='HELLO WORLD'>
+        title='I am a recipe!'>
         <Text style={{marginBottom: 10}}>
-          The idea with React Native Elements is more about component structure than actual design.
+          These are recipe ingredient!
         </Text>
         <Button
           icon={<Icon name='code' color='#ffffff' />}
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
-          title='VIEW NOW' />
+          title='Visit site' 
+        />
+        <Rating
+          showRating
+          type="star"
+          fractions={1}
+          startingValue={3.6}
+          readonly
+          imageSize={40}
+          onFinishRating={this.ratingCompleted}
+          style={{ paddingVertical: 10 }}
+        />
       </Card>
     </View>
 
