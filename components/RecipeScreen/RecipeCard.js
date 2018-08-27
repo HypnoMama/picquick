@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, StyleSheet, Image } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
-import Header from '../Header';
+import Review from './Rating';
 
 const users = [
  {
@@ -28,16 +28,9 @@ export default class RecipeCard extends React.Component {
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='Visit site' 
         />
-        <Rating
-          showRating
-          type="star"
-          fractions={1}
-          startingValue={3.6}
-          readonly
-          imageSize={40}
-          onFinishRating={this.ratingCompleted}
-          style={{ paddingVertical: 10 }}
-        />
+
+        <Review />
+
       </Card>
     </View>
 
