@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, ScrollView, StyleSheet, Image, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Image, Alert } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Review from './Rating';
 import ApiKeys from '../../ApiKeys';
 
 export default class RecipeCard extends React.Component {
+
+  constructor(props){
+    super(props);
+    this.state ={ isLoading: true}
+  }
 
   componentDidMount() {
     return fetch(`https://api.edamam.com/search?q=chicken&app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
@@ -12,7 +17,8 @@ export default class RecipeCard extends React.Component {
       .then( (responseJson) => {
         
         this.setState({
-          dataSource: responseJson.hits,
+          isLoading: false,
+          dataSource: responseJson.hits[0].recipe.label,
         });
       })
 
@@ -23,10 +29,18 @@ export default class RecipeCard extends React.Component {
 
   render() {
 
+    if(this.state.isLoading){
+      return(
+        <View style={{flex: 1, padding: 20}}>
+          <ActivityIndicator/>
+        </View>
+      )
+    }
+
     return(
 
     <View>
-      <Card>
+      <Card title={this.state.dataSource}>
         <Text style={{marginBottom: 10}}>
           These are recipe ingredient!
         </Text>
