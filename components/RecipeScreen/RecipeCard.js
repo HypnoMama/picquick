@@ -6,40 +6,7 @@ import ApiKeys from '../../ApiKeys';
 
 export default class RecipeCard extends React.Component {
 
-  constructor(props){
-    super(props);
-    this.state ={ isLoading: true}
-  }
-
-  componentDidMount() {
-    return fetch(`https://api.edamam.com/search?q=chicken&app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
-      .then( (response) => response.json())
-      .then( (responseJson) => {
-        console.log(responseJson);
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson,
-        });
-      })
-
-      .catch((error) => {
-        console.error(error);
-      });
-  }
-
   render() {
-
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
-
-    recipes = dataSource.map(buttonInfo => (
-      <Button ... key={buttonInfo[0]}>{buttonInfo[1]}</Button>
-    );
 
     return(
 
