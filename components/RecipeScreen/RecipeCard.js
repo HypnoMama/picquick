@@ -16,17 +16,19 @@ export default class RecipeCard extends React.Component {
 
     let recipes = this.props.data.hits;
     let recipeList = recipes.map( (each, index) => {
-      return <Card title={each.recipe.label} key={index}>
+      return 
+
+      <Card title={each.recipe.label} key={index}>
 
         <RecipeIngredients data={each.recipe.ingredients}/>
-
+        <Text>{' '}</Text>
         <Button
           icon={<Icon name='code' color='#ffffff' />}
           backgroundColor='#03A9F4'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='View Recipe' 
         />
-
+        
       </Card>});
 
     return(

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Image, Alert } from 'react-native';
+import { ScrollView, Text, View, ActivityIndicator, StyleSheet, Image, Alert } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Header from '../Header';
 import ApiKeys from '../../ApiKeys';
@@ -41,14 +41,12 @@ export default class RecipeScreen extends React.Component {
 
     return(
 
-      <View>
+      <ScrollView>
 
         <RecipeCard data={this.state.dataSource}/>
     
-      </View>
+      </ScrollView>
 
     )
-
   }
-
 }
