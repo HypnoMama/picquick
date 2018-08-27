@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../Header';
 import MyCamera from './Camera';
-import Modal from './Modal/Modal';
+import ModalScreen from './Modal/Modal';
 
 export default class HomeScreen extends React.Component {
 
@@ -25,7 +25,7 @@ export default class HomeScreen extends React.Component {
     let theComponent;
       !this.state.predictions ? 
       theComponent = <MyCamera getPredictions={this.getPredictions} />
-      : theComponent = <Modal predictions={this.state.predictions} />
+      : theComponent = <ModalScreen predictions={this.state.predictions} />
 
     return (
       <View style={styles.container}>
