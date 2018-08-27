@@ -24,7 +24,7 @@ export default class ModalScreen extends React.Component {
     this.setState((prevState) => {
       return {
           deletedRowKey: activeKey
-        };   
+        };        
     })
     // this.refs.flatList.scrollToEnd();
   } 
@@ -119,7 +119,6 @@ export default class ModalScreen extends React.Component {
     )
   }
 }
-<<<<<<< HEAD
 
 const styles = StyleSheet.create ({
   container: {
@@ -148,5 +147,3 @@ const styles = StyleSheet.create ({
     backgroundColor: 'mediumseagreen'
   }
 })
-=======
->>>>>>> master
