@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import Header from '../Header';
 import MyCamera from './Camera';
 import Modal from './Modal/Modal';
+import RecipeCard from './../RecipeScreen/RecipeCard';
 
 export default class HomeScreen extends React.Component {
 
@@ -31,7 +32,9 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
       <Header />
 
-        {theComponent}
+        {/*{theComponent}*/}
+        <RecipeCard />
+
     
       </View>
   )}
