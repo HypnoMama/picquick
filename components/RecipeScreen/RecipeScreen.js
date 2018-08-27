@@ -9,6 +9,13 @@ export default class RecipeScreen extends React.Component {
 
     return(
 
+    <View style={styles.container}>
+      <Header />
+
+        {/*{theComponent}*/}
+        <RecipeCard />
+    
+      </View>
 
     )
 

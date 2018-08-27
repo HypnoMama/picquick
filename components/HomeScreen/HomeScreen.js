@@ -33,7 +33,7 @@ export default class HomeScreen extends React.Component {
       <Header />
 
         {/*{theComponent}*/}
-        <RecipeCard />
+        <RecipeScreen />
 
     
       </View>

@@ -15,10 +15,10 @@ export default class RecipeCard extends React.Component {
     return fetch(`https://api.edamam.com/search?q=chicken&app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
       .then( (response) => response.json())
       .then( (responseJson) => {
-        
+        console.log(responseJson);
         this.setState({
           isLoading: false,
-          dataSource: responseJson.hits[0].recipe.label,
+          dataSource: responseJson,
         });
       })
 
@@ -36,6 +36,10 @@ export default class RecipeCard extends React.Component {
         </View>
       )
     }
+
+    recipes = dataSource.map(buttonInfo => (
+      <Button ... key={buttonInfo[0]}>{buttonInfo[1]}</Button>
+    );
 
     return(
 
