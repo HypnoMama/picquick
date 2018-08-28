@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
 import RecipeScreen from '../../RecipeScreen/RecipeScreen';
@@ -61,7 +61,7 @@ export default class ModalScreen extends React.Component {
 
     return (
 
-      <View >    
+      <ScrollView>    
        
         <FlatList 
           ref={'flatList'}
@@ -94,6 +94,10 @@ export default class ModalScreen extends React.Component {
           animationOut={'slideOutRight'}
           backdropColor={'black'}
           backdropOpacity={0.9}
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          backdropTransitionInTiming={1000}
+          backdropTransitionOutTiming={1000}
           onRequestClose = {() => {
             console.log("closed!")
         }}
@@ -115,7 +119,7 @@ export default class ModalScreen extends React.Component {
 
         </Modal>
  
-      </View>
+      </ScrollView>
     )
   }
 }
