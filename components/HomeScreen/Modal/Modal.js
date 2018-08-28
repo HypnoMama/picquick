@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, Button, Modal, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
 import RecipeScreen from '../../RecipeScreen/RecipeScreen';
+import Modal from 'react-native-modal';
 // import RealModal from '../../RealModal';
 
 const screen = Dimensions.get('window');
@@ -13,7 +14,7 @@ export default class ModalScreen extends React.Component {
     super(props);
     this.state = {
       deletedRowKey: null,
-      modalVisible: false,
+      isModalVisible: false,
       newItemName: '',
       listItems: this.props.predictions.outputs[0].data.concepts,
       recipeScreen: false,
@@ -29,23 +30,17 @@ export default class ModalScreen extends React.Component {
           deletedRowKey: activeKey
         };        
     })
-    
   } 
-
     
   _keyExtractor = (item, index) => item.id;
-
  
   toggleModal(visible) {
-    this.setState( { modalVisible: visible })
+    this.setState( { isModalVisible: visible })
   }
 
   renderRecipeScreen(){
-    
     this.setState( {recipeScreen: true })
-      
   }
-  
 
   saveItem(){
     const newItem = {
@@ -65,70 +60,66 @@ export default class ModalScreen extends React.Component {
     let theList = this.state.listItems
 
     return (
-      <View >    
-        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
-        <Button onPress={() => {this.toggleModal()}} 
-                title="Add item"
-                containerStyle={styles.container} >
-        </Button>
 
-         <Button onPress={() => {this.renderRecipeScreen(true)}} 
-                title="confirm"
-                containerStyle={styles.container} >
-        </Button>
-       
+      <ScrollView>    
        
         <FlatList 
           ref={'flatList'}
           data={this.state.listItems}
           keyExtractor={this._keyExtractor}
           extraData={this.state.listItems}
-          renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}        
+          renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
         />
 
-        {/* <RealModal modalVisible={this.state.modalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
-        
+        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+
+        <Button onPress={() => {this.toggleModal()}} 
+          title="Add item"
+          containerStyle={styles.container} >
+        </Button>
+
+        <Text>{' '}</Text>
+
+         <Button onPress={() => {this.renderRecipeScreen(true)}} 
+          title="confirm"
+          containerStyle={styles.container} >
+        </Button>
+
+        {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
        
         <Modal
-         
-          visible = {this.state.modalVisible}
+          style={styles.modalStyle}
+          visible = {this.state.isModalVisible}
+          animationIn={'slideInLeft'}
+          animationOut={'slideOutRight'}
+          backdropColor={'black'}
+          backdropOpacity={0.9}
+          animationInTiming={1000}
+          animationOutTiming={1000}
+          backdropTransitionInTiming={1000}
+          backdropTransitionOutTiming={1000}
           onRequestClose = {() => {
             console.log("closed!")
         }}
-          animationType={"slide"}
         >
-         <View  style={
-            {
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              borderRadius: Platform.OS === 'ios' ? 30 : 0,
-              shadowRadius: 10,
-              width: 300,
-              height: 280
-              
-            }}>
           
            <TextInput 
-            style={{height: 40}}
+            style={styles.modalContent}
             placeholder="Add item"
             onChangeText={(text) => this.setState({ newItemName: text }) }
            />
+
             <Button 
-            title='save'
-            onPress = {() => {             
-              this.saveItem()
-            } }
-            
+              title='save'
+              onPress = {() => {             
+                this.saveItem()
+              }}
             >            
             </Button>
-          </View>
-
 
         </Modal>
-        
  
-      </View>
+      </ScrollView>
     )
   }
 }
@@ -139,24 +130,20 @@ const styles = StyleSheet.create ({
     marginLeft: 80,
     borderRadius: 6,
     backgroundColor: 'pink'
-
   },
   modalStyle: {
-    justifyContent: 'center',
-    borderRadius: Platform.OS === 'ios' ? 30 : 0,
     shadowRadius: 10,
-    width: screen.width - 80,
-    height: 280
+    justifyContent: 'center',
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)"
   },
   buttonStyle: {
     fontSize: 18, color: 'white'
-  },
-  buttonContainer: {
-    padding: 8,
-    marginLeft: 70,
-    marginRight: 70,
-    height: 40, 
-    borderRadius: 6,
-    backgroundColor: 'mediumseagreen'
   }
 })
