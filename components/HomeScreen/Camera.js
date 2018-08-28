@@ -78,7 +78,9 @@ export default class MyCamera extends React.Component {
                   />
 
                   <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
+
                     <Icon raised name='camera' color='black' />
+                    
                   </TouchableOpacity>
             
             </Camera>
