@@ -1,7 +1,7 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
 import { Icon } from 'react-native-elements';
-import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
+import { TouchableHighlight, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
 import ApiKeys from '../../ApiKeys';
 
 const Clarifai = require('clarifai');
@@ -55,7 +55,7 @@ export default class MyCamera extends React.Component {
     this.props.getPredictions(predictions);
   };
 
-    render() {
+  render() {
     const { hasCameraPermission, predictions } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
@@ -63,15 +63,10 @@ export default class MyCamera extends React.Component {
       return <Text>Please Allow Camera Permissions</Text>;
     } else {
       return (
+
         <View style={{ flex: 1 }}>
 
-          <Camera
-            ref={ref => {
-              this.camera = ref;
-            }}
-            style={{ flex: 1 }}
-            type={this.state.type}
-          >
+          <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
                 <FlatList style={styles.flatview}
                   data={predictions.map(prediction => ({
@@ -82,16 +77,11 @@ export default class MyCamera extends React.Component {
                   )}
                 />
 
-              <TouchableOpacity style={styles.cameraButton}>
+              <TouchableHighlight style={styles.cameraButton} activeOpacity={0.8} onPress={this.detect}>
 
-                <Icon
-                  raised
-                  name='camera'
-                  color='black'
-                  onPress={this.detect}
-                />
+                <Icon raised name='camera' color='black' />
               
-              </TouchableOpacity>
+              </TouchableHighlight>
           
           </Camera>
         
@@ -113,7 +103,7 @@ const styles = StyleSheet.create({
   cameraButton: {
     flex: 0.1,
     alignItems: 'center',
-    height: '10%',
-    padding: '8%',
+    height: '100%',
+    paddingBottom: '8%',
   }
 });
