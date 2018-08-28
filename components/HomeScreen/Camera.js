@@ -1,7 +1,7 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
 import { Icon } from 'react-native-elements';
-import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
+import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 import ApiKeys from '../../ApiKeys';
 
 const Clarifai = require('clarifai');
@@ -55,7 +55,7 @@ export default class MyCamera extends React.Component {
     this.props.getPredictions(predictions);
   };
 
-    render() {
+  render() {
     const { hasCameraPermission, predictions } = this.state;
     if (hasCameraPermission === null) {
       return <View />;
@@ -63,37 +63,25 @@ export default class MyCamera extends React.Component {
       return <Text>Please Allow Camera Permissions</Text>;
     } else {
       return (
+
         <View style={{ flex: 1 }}>
 
-          <Camera
-            ref={ref => {
-              this.camera = ref;
-            }}
-            style={{ flex: 1 }}
-            type={this.state.type}
-          >
+            <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
-                <FlatList style={styles.flatview}
-                  data={predictions.map(prediction => ({
-                    key: `${prediction.name} ${prediction.value}`,
-                  }))}
-                  renderItem={({ item }) => (
-                    <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
-                  )}
-                />
+                  <FlatList style={styles.flatview}
+                    data={predictions.map(prediction => ({
+                      key: `${prediction.name} ${prediction.value}`,
+                    }))}
+                    renderItem={({ item }) => (
+                      <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
+                    )}
+                  />
 
-              <TouchableOpacity style={styles.cameraButton}>
-
-                <Icon
-                  raised
-                  name='camera'
-                  color='black'
-                  onPress={this.detect}
-                />
-              
-              </TouchableOpacity>
-          
-          </Camera>
+                  <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
+                    <Icon raised name='camera' color='black' />
+                  </TouchableOpacity>
+            
+            </Camera>
         
         </View>
       );
@@ -114,6 +102,6 @@ const styles = StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     height: '10%',
-    padding: '8%',
+    paddingBottom: '8%',
   }
 });
