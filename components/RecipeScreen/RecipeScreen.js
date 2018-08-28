@@ -4,6 +4,7 @@ import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Header from '../Header';
 import ApiKeys from '../../ApiKeys';
 import RecipeCard from './RecipeCard';
+import LoadingScreen from './../LoadingScreen';
 
 export default class RecipeScreen extends React.Component {
 
@@ -42,15 +43,19 @@ export default class RecipeScreen extends React.Component {
 
     if(this.state.isLoading){
       return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator />
+
+        <View style={styles.viewStyle}>
+
+          <LoadingScreen />
+
         </View>
+
       )
     }
 
     return(
       
-      <ScrollView>
+      <ScrollView style={styles.viewStyle}>
 
         <RecipeCard data={this.state.dataSource}/>
     
@@ -59,3 +64,17 @@ export default class RecipeScreen extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create ({
+  viewStyle: {
+    flex: 0,
+    backgroundColor: '#A2E5F4',
+    height: '100%',
+    width: '100%'
+  },
+  loadText: {
+    fontSize: 30,
+  }
+});
+
+
