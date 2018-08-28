@@ -45,7 +45,6 @@ export default class Ingredient extends React.Component {
                 {text: 'Yes', onPress: () => {
                   
                   this.props.allItems.splice(this.props.index, 1);
-                  alert('hi')
                   this.props.parentFlatList.refreshFlatList(deletingRow);
                   
                 }
@@ -70,9 +69,6 @@ export default class Ingredient extends React.Component {
           {this.filterValues(this.itemName)}
         </View>
       </Swipeout>
-        
-        
-      
     )
   }
 }

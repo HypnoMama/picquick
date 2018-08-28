@@ -64,6 +64,7 @@ export default class MyCamera extends React.Component {
     } else {
       return (
         <View style={{ flex: 1 }}>
+
           <Camera
             ref={ref => {
               this.camera = ref;
@@ -71,21 +72,7 @@ export default class MyCamera extends React.Component {
             style={{ flex: 1 }}
             type={this.state.type}
           >
-            <View
-              style={{
-                flex: 1,
-                backgroundColor: 'transparent',
-                flexDirection: 'column',
-                justifyContent: 'flex-end'
-              }}
-            >
-              <View
-                style={{
-                  flex: 1,
-                  alignSelf: 'flex-start',
-                  alignItems: 'center',
-                }}
-              >
+
                 <FlatList style={styles.flatview}
                   data={predictions.map(prediction => ({
                     key: `${prediction.name} ${prediction.value}`,
@@ -94,10 +81,8 @@ export default class MyCamera extends React.Component {
                     <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
                   )}
                 />
-              </View>
 
-              <TouchableOpacity style={styles.cameraButton}
-              >
+              <TouchableOpacity style={styles.cameraButton}>
 
                 <Icon
                   raised
@@ -107,8 +92,6 @@ export default class MyCamera extends React.Component {
                 />
               
               </TouchableOpacity>
-            
-            </View>
           
           </Camera>
         

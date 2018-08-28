@@ -21,8 +21,6 @@ export default class RecipeScreen extends React.Component {
     return searchString
   }
 
-
-
   componentDidMount() {
     const searchItems = this.buildRequest();
 
@@ -51,9 +49,6 @@ export default class RecipeScreen extends React.Component {
     }
 
     return(
-
-      
-
       
       <ScrollView>
 
