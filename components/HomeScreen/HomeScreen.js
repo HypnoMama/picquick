@@ -31,8 +31,7 @@ export default class HomeScreen extends React.Component {
       <View style={styles.container}>
       <Header />
 
-        {theComponent}
-        {/*{<RecipeScreen />*/}
+        {theComponent} 
     
       </View>
   )}
