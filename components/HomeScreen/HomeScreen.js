@@ -5,13 +5,15 @@ import Header from '../Header';
 import MyCamera from './Camera';
 import ModalScreen from './Modal/Modal';
 import RecipeScreen from './../RecipeScreen/RecipeScreen';
+import OpeningScreen from './../OpeningScreen'
 
 export default class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      cameraClicked: false
+      cameraClicked: false,
+      isLoading: true,
     }
     this.getPredictions = this.getPredictions.bind(this);
   }
@@ -20,12 +22,23 @@ export default class HomeScreen extends React.Component {
     this.setState({predictions: clarifaiData})   
   }
 
+  componentDidMount() {
+    setTimeout( () => {this.setState({isLoading: false})}, 3000);
+  }
+
   render() {
 
     let theComponent;
-      !this.state.predictions ? 
-      theComponent = <MyCamera getPredictions={this.getPredictions} />
-      : theComponent = <ModalScreen predictions={this.state.predictions} />
+
+    this.state.isLoading ?
+      theComponent = <OpeningScreen />
+      :
+      (
+       !this.state.predictions ? 
+        theComponent = <MyCamera getPredictions={this.getPredictions} />
+        : 
+        theComponent = <ModalScreen predictions={this.state.predictions} />
+      )
 
     return (
       <View style={styles.container}>

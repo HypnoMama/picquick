@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { Expo, Font } from 'expo';
 
 export default class LoadingScreen extends React.Component {
@@ -7,8 +7,8 @@ export default class LoadingScreen extends React.Component {
     return (
 
       <View style={styles.viewStyle}>
-        <Text style={styles.loadText}>Loading</Text>
-        <ActivityIndicator size="large" color="#0000ff" />
+        <Image source={require('./../assets/logo.png')} />
+        <Text style={styles.loadText}>Welcome!</Text>
       </View>
     )
   }
