@@ -15,10 +15,8 @@ export default class RecipeCard extends React.Component {
     // console.log("RECIPE CARD: ", this.props.data.hits[0].recipe.ingredients) //array of objects - ingredients
 
     let recipes = this.props.data.hits;
-    let recipeList = recipes.map( (each, index) => 
-      
-     
-      
+    let recipeList = recipes.map( (each, index) =>
+
       <Card title={each.recipe.label} key={index}>
 
         <RecipeIngredients data={each.recipe.ingredients}/>
