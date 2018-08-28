@@ -15,8 +15,7 @@ export default class RecipeCard extends React.Component {
     console.log(this.props.data)
 
     let recipes = this.props.data.hits;
-    let recipeList = recipes.map( (each, index) => {
-      return 
+    let recipeList = recipes.map( (each, index) =>
 
       <Card title={each.recipe.label} key={index}>
 
@@ -29,7 +28,7 @@ export default class RecipeCard extends React.Component {
           title='View Recipe' 
         />
         
-      </Card>});
+      </Card>);
 
     return(
 
