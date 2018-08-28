@@ -20,7 +20,7 @@ export default class Header extends React.Component {
     return (
       <View style={styles.viewStyle}>
       {
-        this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuick</Text>) : null
+        this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuik</Text>) : null
       }
       </View>
     )

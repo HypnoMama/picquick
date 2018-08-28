@@ -1,7 +1,7 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
 import { Icon } from 'react-native-elements';
-import { TouchableHighlight, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
+import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 import ApiKeys from '../../ApiKeys';
 
 const Clarifai = require('clarifai');
@@ -66,24 +66,22 @@ export default class MyCamera extends React.Component {
 
         <View style={{ flex: 1 }}>
 
-          <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
+            <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
-                <FlatList style={styles.flatview}
-                  data={predictions.map(prediction => ({
-                    key: `${prediction.name} ${prediction.value}`,
-                  }))}
-                  renderItem={({ item }) => (
-                    <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
-                  )}
-                />
+                  <FlatList style={styles.flatview}
+                    data={predictions.map(prediction => ({
+                      key: `${prediction.name} ${prediction.value}`,
+                    }))}
+                    renderItem={({ item }) => (
+                      <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
+                    )}
+                  />
 
-              <TouchableHighlight style={styles.cameraButton} activeOpacity={0.8} onPress={this.detect}>
-
-                <Icon raised name='camera' color='black' />
-              
-              </TouchableHighlight>
-          
-          </Camera>
+                  <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
+                    <Icon raised name='camera' color='black' />
+                  </TouchableOpacity>
+            
+            </Camera>
         
         </View>
       );
@@ -103,7 +101,7 @@ const styles = StyleSheet.create({
   cameraButton: {
     flex: 0.1,
     alignItems: 'center',
-    height: '100%',
+    height: '10%',
     paddingBottom: '8%',
   }
 });
