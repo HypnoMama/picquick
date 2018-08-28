@@ -8,7 +8,6 @@ export default class LoadingScreen extends React.Component {
 
       <View style={styles.viewStyle}>
         <Image source={require('./../assets/logo.png')} />
-        <Text style={styles.loadText}>Welcome!</Text>
       </View>
     )
   }
@@ -18,9 +17,7 @@ const styles = StyleSheet.create ({
   viewStyle: {
     flex: 1, 
     padding: 20, 
-    alignItems: 'center'
-  },
-  loadText: {
-    fontSize: 30,
+    alignItems: 'center',
+    backgroundColor: '#A2E5F4',
   }
 });

@@ -43,14 +43,19 @@ export default class RecipeScreen extends React.Component {
 
     if(this.state.isLoading){
       return(
-        <LoadingScreen />
-      )
 
+        <View style={styles.viewStyle}>
+
+          <LoadingScreen />
+
+        </View>
+
+      )
     }
 
     return(
       
-      <ScrollView>
+      <ScrollView style={styles.viewStyle}>
 
         <RecipeCard data={this.state.dataSource}/>
     
@@ -59,5 +64,17 @@ export default class RecipeScreen extends React.Component {
     )
   }
 }
+
+const styles = StyleSheet.create ({
+  viewStyle: {
+    flex: 0,
+    backgroundColor: '#A2E5F4',
+    height: '100%',
+    width: '100%'
+  },
+  loadText: {
+    fontSize: 30,
+  }
+});
 
 

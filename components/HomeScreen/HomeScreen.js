@@ -23,7 +23,7 @@ export default class HomeScreen extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout( () => {this.setState({isLoading: false})}, 3000);
+    setTimeout( () => {this.setState({isLoading: false})}, 5000);
   }
 
   render() {
