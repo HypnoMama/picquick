@@ -30,23 +30,17 @@ export default class ModalScreen extends React.Component {
           deletedRowKey: activeKey
         };        
     })
-    
   } 
-
     
   _keyExtractor = (item, index) => item.id;
-
  
   toggleModal(visible) {
-    this.setState( { isModalVisible: true })
+    this.setState( { isModalVisible: visible })
   }
 
   renderRecipeScreen(){
-    
     this.setState( {recipeScreen: true })
-      
   }
-  
 
   saveItem(){
     const newItem = {
@@ -66,6 +60,7 @@ export default class ModalScreen extends React.Component {
     let theList = this.state.listItems
 
     return (
+
       <View >    
        
         <FlatList 
@@ -91,11 +86,14 @@ export default class ModalScreen extends React.Component {
         </Button>
 
         {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
-        
        
         <Modal
           style={styles.modalStyle}
           visible = {this.state.isModalVisible}
+          animationIn={'slideInLeft'}
+          animationOut={'slideOutRight'}
+          backdropColor={'black'}
+          backdropOpacity={0.9}
           onRequestClose = {() => {
             console.log("closed!")
         }}
@@ -143,13 +141,5 @@ const styles = StyleSheet.create ({
   },
   buttonStyle: {
     fontSize: 18, color: 'white'
-  },
-  buttonContainer: {
-    padding: 8,
-    marginLeft: 70,
-    marginRight: 70,
-    height: 40, 
-    borderRadius: 6,
-    backgroundColor: 'mediumseagreen'
   }
 })
