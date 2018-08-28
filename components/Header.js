@@ -1,11 +1,13 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { Expo, Font } from 'expo';
+import { Header, Icon } from 'react-native-elements';
 
-export default class Header extends React.Component {
+export default class TheHeader extends React.Component {
 
   state = {
     fontLoaded: false,
+    backButtonVisible: false,
   };
 
   async componentDidMount() {
@@ -16,13 +18,43 @@ export default class Header extends React.Component {
     this.setState({ fontLoaded: true });
   }
 
+  toggleBackVisible = (visible) => {
+    this.setState({backButtonVisible: visible})
+  }
+
+
   render() {
+
+
     return (
-      <View style={styles.viewStyle}>
-      {
-        this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuik</Text>) : null
-      }
+      // <View style={styles.viewStyle}>
+      // {
+      //   this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuik</Text>) : null
+      // }
+
+      // {
+      //   this.toggleBackVisible(this.props.backVisible)
+      // }
+      // {this.state.backButtonVisible &&
+      //  <View><Text>X</Text></View>
+      
+      // }
+      // </View>
+
+      <View >
+
+      
+      {this.state.fontLoaded ? 
+    
+        (<Header
+          leftComponent={<Icon name='chevron-left' type='entypo'/>}
+          centerComponent={{ text: 'picQuick', style: styles.textStyle }}
+          outerContainerStyles={{ backgroundColor: '#025265', justifyContent: 'center'}}
+        />)
+        : null
+        }
       </View>
+
     )
   }
 
@@ -38,7 +70,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontFamily: 'header-font',
   },
-  viewStyle: {
+  viewStyle: {  
     alignItems: 'stretch',
     justifyContent: 'center',
   }
