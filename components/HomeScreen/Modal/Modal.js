@@ -67,64 +67,54 @@ export default class ModalScreen extends React.Component {
 
     return (
       <View >    
-        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
-        <Button onPress={() => {this.toggleModal()}} 
-                title="Add item"
-                containerStyle={styles.container} >
-        </Button>
-
-         <Button onPress={() => {this.renderRecipeScreen(true)}} 
-                title="confirm"
-                containerStyle={styles.container} >
-        </Button>
-       
        
         <FlatList 
           ref={'flatList'}
           data={this.state.listItems}
           keyExtractor={this._keyExtractor}
           extraData={this.state.listItems}
-          renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}        
+          renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
         />
+
+        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+
+        <Button onPress={() => {this.toggleModal()}} 
+          title="Add item"
+          containerStyle={styles.container} >
+        </Button>
+
+        <Text>{' '}</Text>
+
+         <Button onPress={() => {this.renderRecipeScreen(true)}} 
+          title="confirm"
+          containerStyle={styles.container} >
+        </Button>
 
         {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
         
        
         <Modal
+          style={styles.modalStyle}
           visible = {this.state.isModalVisible}
-          justifyContent = {'flex-end'}
-          margin = {0}
           onRequestClose = {() => {
             console.log("closed!")
         }}
-          
         >
-         <View  style={
-            {
-              flex: 1,
-              flexDirection: 'column',
-              justifyContent: 'center',
-              borderRadius: Platform.OS === 'ios' ? 30 : 0,
-              shadowRadius: 10,
-              width: 300,
-              height: 280
-              
-            }}>
           
            <TextInput 
             style={{height: 40}}
             placeholder="Add item"
             onChangeText={(text) => this.setState({ newItemName: text }) }
            />
+
             <Button 
-            title='save'
-            onPress = {() => {             
-              this.saveItem()
-            } }
-            
+              title='save'
+              onPress = {() => {             
+                this.saveItem()
+              }}
             >            
             </Button>
-          </View>
+
 
 
         </Modal>
@@ -144,11 +134,10 @@ const styles = StyleSheet.create ({
 
   },
   modalStyle: {
-    justifyContent: 'center',
     borderRadius: Platform.OS === 'ios' ? 30 : 0,
     shadowRadius: 10,
-    width: screen.width - 80,
-    height: 280
+    justifyContent: 'flex-end',
+    margin: 0
   },
   buttonStyle: {
     fontSize: 18, color: 'white'
