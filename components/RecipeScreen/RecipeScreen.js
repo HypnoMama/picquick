@@ -3,7 +3,7 @@ import { ScrollView, Text, View, ActivityIndicator, StyleSheet, Image, Alert } f
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Header from '../Header';
 import ApiKeys from '../../ApiKeys';
-import RecipeCard from './RecipeCard'
+import RecipeCard from './RecipeCard';
 
 export default class RecipeScreen extends React.Component {
 
@@ -12,8 +12,21 @@ export default class RecipeScreen extends React.Component {
     this.state ={ isLoading: true}
   }
 
+  buildRequest() {
+    let items = this.props.items
+    let searchString = ''
+    items.forEach((item) => {
+      searchString += `${item.name}&`
+    })    
+    return searchString
+  }
+
+
+
   componentDidMount() {
-    return fetch(`https://api.edamam.com/search?q=chicken&app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
+    const searchItems = this.buildRequest();
+
+    return fetch(`https://api.edamam.com/search?q=${searchItems}app_id=${ApiKeys.edamamConfig.APP_ID}&app_key=${ApiKeys.edamamConfig.API_KEY}&from=0&to=4`)
       .then( (response) => response.json())
       .then( (responseJson) => {
         this.setState({
@@ -39,12 +52,15 @@ export default class RecipeScreen extends React.Component {
 
     return(
 
+      
+
+      
       <ScrollView>
 
         <RecipeCard data={this.state.dataSource}/>
     
       </ScrollView>
-
+      
     )
   }
 }
