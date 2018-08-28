@@ -1,7 +1,7 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
 import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
-import ApiKeys from '../../ApiKeys'
+import ApiKeys from '../../ApiKeys';
 
 const Clarifai = require('clarifai');
 const clarifai = new Clarifai.App({
@@ -43,6 +43,7 @@ export default class MyCamera extends React.Component {
       image
     );
     return predictions;
+    
   };
 
   detect = async () => {
