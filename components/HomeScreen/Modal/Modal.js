@@ -34,8 +34,8 @@ export default class ModalScreen extends React.Component {
     
   _keyExtractor = (item, index) => item.id;
  
-  toggleModal(visible) {
-    this.setState( { isModalVisible: visible })
+  toggleModal() {
+    this.setState( { isModalVisible: !this.state.isModalVisible })
   }
 
   renderRecipeScreen(){
@@ -89,7 +89,7 @@ export default class ModalScreen extends React.Component {
        
         <Modal
           style={styles.modalStyle}
-          visible = {this.state.isModalVisible}
+          isVisible = {this.state.isModalVisible}
           animationIn={'slideInLeft'}
           animationOut={'slideOutRight'}
           backdropColor={'black'}
