@@ -102,7 +102,7 @@ export default class ModalScreen extends React.Component {
         >
           
            <TextInput 
-            style={{height: 40}}
+            style={styles.modalContent}
             placeholder="Add item"
             onChangeText={(text) => this.setState({ newItemName: text }) }
            />
@@ -115,10 +115,7 @@ export default class ModalScreen extends React.Component {
             >            
             </Button>
 
-
-
         </Modal>
-        
  
       </View>
     )
@@ -131,13 +128,18 @@ const styles = StyleSheet.create ({
     marginLeft: 80,
     borderRadius: 6,
     backgroundColor: 'pink'
-
   },
   modalStyle: {
-    borderRadius: Platform.OS === 'ios' ? 30 : 0,
     shadowRadius: 10,
-    justifyContent: 'flex-end',
-    margin: 0
+    justifyContent: 'center',
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)"
   },
   buttonStyle: {
     fontSize: 18, color: 'white'
