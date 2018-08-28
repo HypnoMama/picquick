@@ -61,63 +61,70 @@ export default class ModalScreen extends React.Component {
 
     return (
 
-      <ScrollView>    
+      <ScrollView>
+
+      {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+      {this.state.recipeScreen || 
+
+        <View>
        
-        <FlatList 
-          ref={'flatList'}
-          data={this.state.listItems}
-          keyExtractor={this._keyExtractor}
-          extraData={this.state.listItems}
-          renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
-        />
+          <FlatList 
+            ref={'flatList'}
+            data={this.state.listItems}
+            keyExtractor={this._keyExtractor}
+            extraData={this.state.listItems}
+            renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
+          />
 
-        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+          <Button onPress={() => {this.toggleModal()}} 
+            title="Add item"
+            containerStyle={styles.container}>
+          </Button>
 
-        <Button onPress={() => {this.toggleModal()}} 
-          title="Add item"
-          containerStyle={styles.container} >
-        </Button>
+          <Text>{' '}</Text>
 
-        <Text>{' '}</Text>
+           <Button onPress={() => {this.renderRecipeScreen(true)}} 
+            title="confirm"
+            containerStyle={styles.container} >
+          </Button>
 
-         <Button onPress={() => {this.renderRecipeScreen(true)}} 
-          title="confirm"
-          containerStyle={styles.container} >
-        </Button>
+          {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
+         
+          <Modal
+            style={styles.modalStyle}
+            isVisible = {this.state.isModalVisible}
+            animationIn={'slideInLeft'}
+            animationOut={'slideOutRight'}
+            backdropColor={'black'}
+            backdropOpacity={0.9}
+            animationInTiming={1000}
+            animationOutTiming={1000}
+            backdropTransitionInTiming={1000}
+            backdropTransitionOutTiming={1000}
+            onRequestClose = {() => {
+              console.log("closed!")
+          }}
+          >
+            
+             <TextInput 
+              style={styles.modalContent}
+              placeholder="Add item"
+              onChangeText={(text) => this.setState({ newItemName: text }) }
+             />
 
-        {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
-       
-        <Modal
-          style={styles.modalStyle}
-          isVisible = {this.state.isModalVisible}
-          animationIn={'slideInLeft'}
-          animationOut={'slideOutRight'}
-          backdropColor={'black'}
-          backdropOpacity={0.9}
-          animationInTiming={1000}
-          animationOutTiming={1000}
-          backdropTransitionInTiming={1000}
-          backdropTransitionOutTiming={1000}
-          onRequestClose = {() => {
-            console.log("closed!")
-        }}
-        >
-          
-           <TextInput 
-            style={styles.modalContent}
-            placeholder="Add item"
-            onChangeText={(text) => this.setState({ newItemName: text }) }
-           />
+              <Button 
+                title='save'
+                onPress = {() => {             
+                  this.saveItem()
+                }}
+              >            
+              </Button>
 
-            <Button 
-              title='save'
-              onPress = {() => {             
-                this.saveItem()
-              }}
-            >            
-            </Button>
+          </Modal>
 
-        </Modal>
+        </View>
+
+      }
  
       </ScrollView>
     )
