@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
 import RecipeScreen from '../../RecipeScreen/RecipeScreen';
@@ -61,7 +61,7 @@ export default class ModalScreen extends React.Component {
 
     return (
 
-      <ScrollView>    
+      <View>    
        
         <FlatList 
           ref={'flatList'}
@@ -119,7 +119,7 @@ export default class ModalScreen extends React.Component {
 
         </Modal>
  
-      </ScrollView>
+      </View>
     )
   }
 }
