@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Button, Modal, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
+import RecipeScreen from '../../RecipeScreen/RecipeScreen';
 // import RealModal from '../../RealModal';
 
 const screen = Dimensions.get('window');
@@ -15,9 +16,11 @@ export default class ModalScreen extends React.Component {
       modalVisible: false,
       newItemName: '',
       listItems: this.props.predictions.outputs[0].data.concepts,
+      recipeScreen: false,
     }
     this.saveItem = this.saveItem.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
+    this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
   }
  
   refreshFlatList = (activeKey) => {
@@ -26,10 +29,9 @@ export default class ModalScreen extends React.Component {
           deletedRowKey: activeKey
         };        
     })
-    // this.refs.flatList.scrollToEnd();
+    
   } 
 
-  // listItems = this.props.predictions.outputs[0].data.concepts;
     
   _keyExtractor = (item, index) => item.id;
 
@@ -37,6 +39,13 @@ export default class ModalScreen extends React.Component {
   toggleModal(visible) {
     this.setState( { modalVisible: visible })
   }
+
+  renderRecipeScreen(){
+    
+    this.setState( {recipeScreen: true })
+      
+  }
+  
 
   saveItem(){
     const newItem = {
@@ -54,16 +63,20 @@ export default class ModalScreen extends React.Component {
   render() {
 
     let theList = this.state.listItems
-   
-    console.log("Here are our listItems in the state: ", this.state.listItems)
-    return (
-      <View >
 
-       
-        <Button onPress={() => {this.toggleModal(true)}} 
+    return (
+      <View >    
+        {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+        <Button onPress={() => {this.toggleModal()}} 
                 title="Add item"
                 containerStyle={styles.container} >
         </Button>
+
+         <Button onPress={() => {this.renderRecipeScreen(true)}} 
+                title="confirm"
+                containerStyle={styles.container} >
+        </Button>
+       
        
         <FlatList 
           ref={'flatList'}
