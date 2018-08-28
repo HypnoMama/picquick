@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, FlatList, Button, Modal, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
 import RecipeScreen from '../../RecipeScreen/RecipeScreen';
+import Modal from 'react-native-modal';
 // import RealModal from '../../RealModal';
 
 const screen = Dimensions.get('window');
@@ -13,7 +14,7 @@ export default class ModalScreen extends React.Component {
     super(props);
     this.state = {
       deletedRowKey: null,
-      modalVisible: false,
+      isModalVisible: false,
       newItemName: '',
       listItems: this.props.predictions.outputs[0].data.concepts,
       recipeScreen: false,
@@ -37,7 +38,7 @@ export default class ModalScreen extends React.Component {
 
  
   toggleModal(visible) {
-    this.setState( { modalVisible: visible })
+    this.setState( { isModalVisible: true })
   }
 
   renderRecipeScreen(){
@@ -86,16 +87,17 @@ export default class ModalScreen extends React.Component {
           renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}        
         />
 
-        {/* <RealModal modalVisible={this.state.modalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
+        {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
         
        
         <Modal
-         
-          visible = {this.state.modalVisible}
+          visible = {this.state.isModalVisible}
+          justifyContent = {'flex-end'}
+          margin = {0}
           onRequestClose = {() => {
             console.log("closed!")
         }}
-          animationType={"slide"}
+          
         >
          <View  style={
             {
