@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-// import Camera from './components/HomeScreen/Camera';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 
 export default class App extends React.Component {
