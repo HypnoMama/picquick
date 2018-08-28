@@ -1,5 +1,6 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
+import { Icon } from 'react-native-elements';
 import { TouchableOpacity, StyleSheet, Text, View, ActivityIndicator, Alert, FlatList } from 'react-native';
 import ApiKeys from '../../ApiKeys';
 
@@ -95,13 +96,15 @@ export default class MyCamera extends React.Component {
                 />
               </View>
 
-              <TouchableOpacity
-                style={styles.cameraButton}
-                onPress={this.detect}
+              <TouchableOpacity style={styles.cameraButton}
               >
-                <Text style={{ fontSize: 30, color: 'white', padding: 15 }}>
-                  {' '}Take Photo{' '}
-                </Text>
+
+                <Icon
+                  raised
+                  name='camera'
+                  color='black'
+                  onPress={this.detect}
+                />
               
               </TouchableOpacity>
             
@@ -127,7 +130,6 @@ const styles = StyleSheet.create({
   cameraButton: {
     flex: 0.1,
     alignItems: 'center',
-    backgroundColor: 'red',
     height: '10%',
     padding: '2%',
   }
