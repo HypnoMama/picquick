@@ -131,6 +131,6 @@ const styles = StyleSheet.create({
     flex: 0.1,
     alignItems: 'center',
     height: '10%',
-    padding: '2%',
+    padding: '8%',
   }
 });
