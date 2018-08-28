@@ -1,15 +1,32 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Expo, Font } from 'expo';
 
-const Header = () => {
-  return (
-    <View style={styles.viewStyle}>
-      <Text style={styles.textStyle}>PicQuick</Text>
-    </View>
-  )
+export default class Header extends React.Component {
+
+  state = {
+    fontLoaded: false,
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'header-font': require('./../assets/fonts/JosefinSans-Regular.ttf'),
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+  render() {
+    return (
+      <View style={styles.viewStyle}>
+      {
+        this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuick</Text>) : null
+      }
+      </View>
+    )
+  }
+
 }
-
-export default Header
 
 const styles = StyleSheet.create({
   textStyle: {
@@ -18,7 +35,8 @@ const styles = StyleSheet.create({
     color: '#A2E4F4',
     backgroundColor: '#025265',
     height: 80,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'header-font',
   },
   viewStyle: {
     alignItems: 'stretch',
