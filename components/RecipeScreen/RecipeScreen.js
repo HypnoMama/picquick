@@ -4,6 +4,8 @@ import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Header from '../Header';
 import ApiKeys from '../../ApiKeys';
 import RecipeCard from './RecipeCard';
+import TheHeader from '../Header';
+
 
 export default class RecipeScreen extends React.Component {
 
@@ -51,6 +53,8 @@ export default class RecipeScreen extends React.Component {
     return(
       
       <ScrollView>
+
+        <TheHeader screen='modal' goBackToModalScreen={this.props.goBackToModalScreen}/>
 
         <RecipeCard data={this.state.dataSource}/>
     
