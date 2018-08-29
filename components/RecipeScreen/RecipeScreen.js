@@ -15,7 +15,7 @@ export default class RecipeScreen extends React.Component {
   }
 
   buildRequest() {
-    let items = this.props.items
+    let items = this.props.navigation.getParam('listItems')
     let searchString = ''
     items.forEach((item) => {
       searchString += `${item.name}&`
@@ -42,6 +42,9 @@ export default class RecipeScreen extends React.Component {
 
   render() {
 
+    const { navigation }  = this.props;
+
+
     if(this.state.isLoading){
       return(
 
@@ -57,8 +60,6 @@ export default class RecipeScreen extends React.Component {
     return(
       
       <ScrollView style={styles.viewStyle}>
-
-        <TheHeader screen='modal' goBackToModalScreen={this.props.goBackToModalScreen}/>
 
         <RecipeCard data={this.state.dataSource}/>
 
