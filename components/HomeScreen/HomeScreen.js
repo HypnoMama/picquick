@@ -24,14 +24,14 @@ export default class HomeScreen extends React.Component {
 
   goneBack() {
 
-    this.setState({goneBack: true, predictions: false})
+    this.setState({goneBack: !this.state.goneBack, predictions: false})
   }
 
   render() {
 
     let theComponent;
-      !this.state.predictions || this.state.goneBack ? 
-      theComponent = <MyCamera getPredictions={this.getPredictions} />
+      !this.state.predictions && !this.state.goneBack ? 
+      theComponent = <MyCamera getPredictions={this.getPredictions} goneBackToCamera={this.goneBack} />
       : theComponent = <ModalScreen predictions={this.state.predictions} goneBackToCamera={this.goneBack} />
 
     return (
