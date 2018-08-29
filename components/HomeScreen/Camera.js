@@ -1,8 +1,9 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
-import { Icon } from 'react-native-elements';
+import { Icon, Header } from 'react-native-elements';
 import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 import ApiKeys from '../../ApiKeys';
+import TheHeader from '../Header';
 
 const Clarifai = require('clarifai');
 const clarifai = new Clarifai.App({
@@ -15,6 +16,8 @@ export default class MyCamera extends React.Component {
   state = {
     hasCameraPermission: null,
     predictions: [],
+    headerVisible: true,
+    backButtonVisible: true,
   };
 
   async componentDidMount() {
@@ -64,7 +67,9 @@ export default class MyCamera extends React.Component {
     } else {
       return (
 
+        
         <View style={{ flex: 1 }}>
+        <TheHeader  />
 
             <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
