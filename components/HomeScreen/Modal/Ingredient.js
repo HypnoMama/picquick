@@ -15,8 +15,11 @@ export default class Ingredient extends React.Component {
   itemName = this.props.item
  
   filterValues(item) {
+    let text = item.name.slice(0,1).toUpperCase() + item.name.slice(1,item.name.length);
     return item.value > 0.8 ?
-   <Text style={styles.container}>{item.name}:  {item.value}</Text>
+    <TouchableHighlight style={styles.container}>
+      <Text style={styles.textStyle}>{text}</Text>
+    </TouchableHighlight>
     : null
   }
 
@@ -65,7 +68,7 @@ export default class Ingredient extends React.Component {
     return (
 
       <Swipeout {...swipeSettings} >
-        <View >        
+        <View>        
           {this.filterValues(this.itemName)}
         </View>
       </Swipeout>
@@ -80,22 +83,24 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   container: {   
-    height: 50,
+    height: 45,
     backgroundColor: '#68BED9',
     borderColor: '#4292A8',
-    margin: 10,
-    borderWidth: 1,
-    borderRadius: 2,
-    borderBottomWidth: 0,
-    padding: 6,
-    textAlign: 'center',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: "#000708",
     shadowColor: '#2E302D',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 1,
     alignItems: 'stretch',
-
+    margin: 10,
+  },
+  textStyle: {
+    height: 60,
+    fontSize: 30,
+    textAlign: 'center',
   }
 })
 

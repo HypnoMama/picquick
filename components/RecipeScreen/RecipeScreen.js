@@ -58,6 +58,8 @@ export default class RecipeScreen extends React.Component {
       <ScrollView style={styles.viewStyle}>
 
         <RecipeCard data={this.state.dataSource}/>
+
+        <Text>{' '}</Text>
     
       </ScrollView>
       
