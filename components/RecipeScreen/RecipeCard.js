@@ -15,7 +15,7 @@ export default class RecipeCard extends React.Component {
     let recipes = this.props.data.hits;
     let recipeList = recipes.map( (each, index) =>
 
-      <Card style={styles.cardStyle} title={each.recipe.label} key={index}>
+      <Card containerStyle={styles.cardStyle} title={each.recipe.label} key={index}>
 
         <RecipeIngredients data={each.recipe.ingredients}/>
 
@@ -23,7 +23,7 @@ export default class RecipeCard extends React.Component {
 
         <Button
           backgroundColor='#006578'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8}}
           title='View Recipe' 
         />
         
@@ -77,7 +77,8 @@ const styles = StyleSheet.create ({
     fontSize: 30,
   },
   cardStyle: {
-    backgroundColor: '#FFFAF0'
+    backgroundColor: '#FFFAF0',
+    borderRadius: 10,
   }
 });
 
