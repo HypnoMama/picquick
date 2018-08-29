@@ -1,6 +1,24 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './components/HomeScreen/HomeScreen';
+import { createStackNavigator } from 'react-navigation';
+import MyCamera from './components/HomeScreen/Camera';
+import RecipeScreen from './components/RecipeScreen/RecipeScreen';
+import ModalScreen from './components/HomeScreen/Modal/Modal'
+
+
+const RootStack = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Camera: MyCamera,
+    ModalScreen: ModalScreen,
+    RecipeScreen: RecipeScreen,    
+  },
+  {
+    initialRouteName: 'Home'
+  }
+);
+
 
 export default class App extends React.Component {
 
@@ -21,11 +39,14 @@ export default class App extends React.Component {
   // };
 
   render() {
-    return (
-      <View style={styles.container}>
-        <HomeScreen />
-      </View>
-    );
+    return ( <RootStack />)
+      // <View style={styles.container}>
+      //   <HomeScreen />
+      // </View>
+
+     
+
+  
   }
 }
 
@@ -37,3 +58,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+

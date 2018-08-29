@@ -17,7 +17,6 @@ export default class MyCamera extends React.Component {
     hasCameraPermission: null,
     predictions: [],
     headerVisible: true,
-    backButtonVisible: true,
   };
 
   async componentDidMount() {
@@ -54,8 +53,7 @@ export default class MyCamera extends React.Component {
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);    
-    this.setState({ predictions: predictions.outputs[0].data.concepts});
-    this.props.getPredictions(predictions);
+    this.props.navigation.navigate('ModalScreen',  {predictions: predictions.outputs[0].data.concepts})
   };
 
   render() {
@@ -69,7 +67,6 @@ export default class MyCamera extends React.Component {
 
         
         <View style={{ flex: 1 }}>
-        <TheHeader  />
 
             <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
