@@ -16,7 +16,7 @@ export default class Ingredient extends React.Component {
  
   filterValues(item) {
     return item.value > 0.8 ?
-   <Text style={styles.container}>{item.name}:  {item.value}</Text>
+   <Text style={styles.container}>{item.name}</Text>
     : null
   }
 

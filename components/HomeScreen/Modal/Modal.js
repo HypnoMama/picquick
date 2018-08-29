@@ -84,7 +84,7 @@ export default class ModalScreen extends React.Component {
           <Text>{' '}</Text>
 
            <Button onPress={() => {this.renderRecipeScreen(true)}} 
-            title="confirm"
+            title="Confirm"
             containerStyle={styles.container} >
           </Button>
 
@@ -112,7 +112,8 @@ export default class ModalScreen extends React.Component {
               onChangeText={(text) => this.setState({ newItemName: text }) }
              />
 
-              <Button 
+              <Button
+                type="primary"
                 title='save'
                 onPress = {() => {             
                   this.saveItem()
