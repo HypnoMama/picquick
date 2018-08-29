@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   container: {   
     height: 45,
-    backgroundColor: '#b0e9f6',
+    backgroundColor: '#006578',
     borderColor: '#4292A8',
     borderWidth: 2,
     borderRadius: 10,
@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     height: 60,
     fontSize: 30,
     textAlign: 'center',
+    color: '#FFFAF0'
   },
   flatListStyle: {
     backgroundColor: '#1D8295',
