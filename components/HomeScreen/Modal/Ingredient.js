@@ -68,7 +68,7 @@ export default class Ingredient extends React.Component {
     return (
 
       <Swipeout {...swipeSettings} >
-        <View >        
+        <View>        
           {this.filterValues(this.itemName)}
         </View>
       </Swipeout>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     height: 45,
     backgroundColor: '#68BED9',
     borderColor: '#4292A8',
-    borderWidth: 3,
+    borderWidth: 2,
     borderRadius: 10,
     borderColor: "#000708",
     shadowColor: '#2E302D',

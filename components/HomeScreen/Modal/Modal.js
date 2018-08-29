@@ -113,8 +113,7 @@ export default class ModalScreen extends React.Component {
              />
 
               <Button
-                type="primary"
-                title='save'
+                title='Add'
                 onPress = {() => {             
                   this.saveItem()
                 }}
