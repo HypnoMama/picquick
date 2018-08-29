@@ -14,6 +14,8 @@ export default class TheHeader extends React.Component {
     this.goneBack1 = this.goneBack1.bind(this)
   
   }
+
+  screen = this.props.screen
   
   async componentDidMount() {
     await Font.loadAsync({
@@ -27,9 +29,13 @@ export default class TheHeader extends React.Component {
     this.setState({backButtonVisible: visible})
   }
 
- goneBack1 = () => {
-  //  alert("we are in the header!")
-   this.props.goneBackToCamera()
+ goneBack1 = (screen) => {
+
+  //  this.props.goneBackToCamera ? this.props.goneBackToCamera() : this.props.goBackToModalScreen()
+  // this.props.goBacktoModalScreen() ? this.props.goBacktoModalScreen() : this.props.goneBackToCamera()
+  screen === 'camera' ?
+  this.props.goneBackToCamera()
+  : this.props.goBackToModalScreen()
  }
 
 
@@ -37,30 +43,16 @@ export default class TheHeader extends React.Component {
 
 
     return (
-      // <View style={styles.viewStyle}>
-      // {
-      //   this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuik</Text>) : null
-      // }
-
-      // {
-      //   this.toggleBackVisible(this.props.backVisible)
-      // }
-      // {this.state.backButtonVisible &&
-      //  <View><Text>X</Text></View>
       
-      // }
-      // </View>
 
       <View >
-      
-      {/* {this.state.camera && <Camera />} */}
 
       
       {this.state.fontLoaded ? 
     
         (<Header
           statusBarProps={{ barStyle: 'light-content', hidden: true }}
-          leftComponent={<Icon name='chevron-left' type='entypo' paddingTop='0' onPress={() => {this.goneBack1()} }/> }
+          leftComponent={<Icon name='chevron-left' type='entypo' paddingTop='0' onPress={() => {this.goneBack1(this.screen)} }/> }
           // leftComponent={{icon: 'arrow-bold-left', type: 'entypo', style: {margin: 20 }}}
           centerComponent={{ text: 'picQuick', style: styles.textStyle }}
           outerContainerStyles={{ backgroundColor: '#025265', justifyContent: 'center'}}
@@ -89,3 +81,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   }
 });
+
+
+// <View style={styles.viewStyle}>
+      // {
+      //   this.state.fontLoaded ? (<Text style={styles.textStyle}>picQuik</Text>) : null
+      // }
+
+      // {
+      //   this.toggleBackVisible(this.props.backVisible)
+      // }
+      // {this.state.backButtonVisible &&
+      //  <View><Text>X</Text></View>
+      
+      // }
+      // </View>
