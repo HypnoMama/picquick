@@ -136,7 +136,7 @@ const styles = StyleSheet.create ({
     backgroundColor: 'pink'
   },
   flatListStyle: {
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
   },
   modalStyle: {
     shadowRadius: 10,

@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   container: {   
     height: 45,
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#b0e9f6',
     borderColor: '#4292A8',
     borderWidth: 2,
     borderRadius: 10,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   flatListStyle: {
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
   },
 })
 

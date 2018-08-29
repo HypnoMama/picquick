@@ -22,8 +22,7 @@ export default class RecipeCard extends React.Component {
         <Text>{' '}</Text>
 
         <Button
-          icon={<Icon name='code' color='#ffffff' />}
-          backgroundColor='#03A9F4'
+          backgroundColor='#006578'
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
           title='View Recipe' 
         />
@@ -70,7 +69,7 @@ export class RecipeIngredients extends React.Component {
 const styles = StyleSheet.create ({
   viewStyle: {
     flex: 0,
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
     height: '100%',
     width: '100%'
   },

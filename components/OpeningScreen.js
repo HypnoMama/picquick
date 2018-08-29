@@ -19,7 +19,7 @@ const styles = StyleSheet.create ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
   },
   imageStyle: {
     height: 300, 

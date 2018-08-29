@@ -19,7 +19,7 @@ const styles = StyleSheet.create ({
     flex: 1,
     padding: 20, 
     alignItems: 'center',
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
   },
   loadText: {
     fontSize: 30,
