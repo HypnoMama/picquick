@@ -25,7 +25,6 @@ export default class ModalScreen extends React.Component {
     this.saveItem = this.saveItem.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
-    this.goBack = this.goBackToCamera.bind(this)
   }
  
   refreshFlatList = (activeKey) => {
@@ -59,12 +58,6 @@ export default class ModalScreen extends React.Component {
     this.toggleModal(false)
   }
 
-  goBackToCamera() {
-    alert("we are in the modal")
-    // this.setState({ camera: true })
-    
-    
-  }
 
   render() {
 
@@ -80,13 +73,13 @@ export default class ModalScreen extends React.Component {
       
       
       
-      {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+      {this.state.recipeScreen && <RecipeScreen goBackToModalScreen={this.props.goBackToModalScreen} items={this.state.listItems} />}
       {/* {this.state.camera && <HomeScreen />} */}
       {this.state.recipeScreen || 
 
         <View>
 
-          <TheHeader goneBackToCamera={this.props.goneBackToCamera}/>
+          <TheHeader screen='camera' goneBackToCamera={this.props.goneBackToCamera} />
        
           <FlatList 
             ref={'flatList'}
