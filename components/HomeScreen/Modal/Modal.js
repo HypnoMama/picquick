@@ -1,16 +1,12 @@
 import React from 'react';
 import { View, ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
-import AddItemText from './TextInput';
-import RecipeScreen from '../../RecipeScreen/RecipeScreen';
 import Modal from 'react-native-modal';
-import TheHeader from '../../Header';
-import MyCamera from '../Camera';
-import HomeScreen from '../HomeScreen';
 
 const screen = Dimensions.get('window');
 
 export default class ModalScreen extends React.Component {
+
 
   constructor(props) {
     super(props);
@@ -18,7 +14,7 @@ export default class ModalScreen extends React.Component {
       deletedRowKey: null,
       isModalVisible: false,
       newItemName: '',
-      listItems: this.props.predictions.outputs[0].data.concepts,
+      listItems: this.props.navigation.getParam('predictions'),
       recipeScreen: false,
       camera: false,
     }
@@ -26,6 +22,8 @@ export default class ModalScreen extends React.Component {
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
   }
+
+  
  
   refreshFlatList = (activeKey) => {
     this.setState((prevState) => {
@@ -58,28 +56,21 @@ export default class ModalScreen extends React.Component {
     this.toggleModal(false)
   }
 
-
   render() {
 
     let theList = this.state.listItems
+
+    const { navigation }  = this.props;
+    console.log(this.state.listItems)
+    
 
     return (
 
       
       
       <ScrollView>
-        
-      
-      
-      
-      
-      {this.state.recipeScreen && <RecipeScreen goBackToModalScreen={this.props.goBackToModalScreen} items={this.state.listItems} />}
-      {/* {this.state.camera && <HomeScreen />} */}
-      {this.state.recipeScreen || 
 
         <View>
-
-          <TheHeader screen='camera' goneBackToCamera={this.props.goneBackToCamera} />
        
           <FlatList 
             ref={'flatList'}
@@ -96,12 +87,10 @@ export default class ModalScreen extends React.Component {
 
           <Text>{' '}</Text>
 
-           <Button onPress={() => {this.renderRecipeScreen(true)}} 
+           <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
             title="Confirm"
             containerStyle={styles.container} >
           </Button>
-
-          {/* <RealModal isModalVisible={this.state.isModalVisible} toggleModal={this.toggleModal} ref={'realModal'} allItems={this.listItems} parentFlatList={this} /> */}
          
           <Modal
             style={styles.modalStyle}
@@ -137,12 +126,15 @@ export default class ModalScreen extends React.Component {
 
         </View>
 
+        </ScrollView>
+    )
       }
  
-      </ScrollView>
-    )
+      
   }
-}
+
+  
+
 
 const styles = StyleSheet.create ({
   container: {
