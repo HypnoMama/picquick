@@ -4,7 +4,9 @@ import Ingredient from './Ingredient';
 import AddItemText from './TextInput';
 import RecipeScreen from '../../RecipeScreen/RecipeScreen';
 import Modal from 'react-native-modal';
-// import RealModal from '../../RealModal';
+import TheHeader from '../../Header';
+import MyCamera from '../Camera';
+import HomeScreen from '../HomeScreen';
 
 const screen = Dimensions.get('window');
 
@@ -18,10 +20,12 @@ export default class ModalScreen extends React.Component {
       newItemName: '',
       listItems: this.props.predictions.outputs[0].data.concepts,
       recipeScreen: false,
+      camera: false,
     }
     this.saveItem = this.saveItem.bind(this)
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
+    this.goBack = this.goBackToCamera.bind(this)
   }
  
   refreshFlatList = (activeKey) => {
@@ -55,18 +59,34 @@ export default class ModalScreen extends React.Component {
     this.toggleModal(false)
   }
 
+  goBackToCamera() {
+    alert("we are in the modal")
+    // this.setState({ camera: true })
+    
+    
+  }
+
   render() {
 
     let theList = this.state.listItems
 
     return (
 
+      
+      
       <ScrollView>
-
+        
+      
+      
+      
+      
       {this.state.recipeScreen && <RecipeScreen items={this.state.listItems} />}
+      {/* {this.state.camera && <HomeScreen />} */}
       {this.state.recipeScreen || 
 
         <View>
+
+          <TheHeader goneBackToCamera={this.props.goneBackToCamera}/>
        
           <FlatList 
             ref={'flatList'}
