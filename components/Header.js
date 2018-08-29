@@ -1,15 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Expo, Font } from 'expo';
 import { Header, Icon } from 'react-native-elements';
 
 export default class TheHeader extends React.Component {
 
-  state = {
-    fontLoaded: false,
-    backButtonVisible: false,
-  };
-
+  constructor(props) {
+    super(props)
+    this.state = {
+      fontLoaded: false,
+      backButtonVisible: false,
+    };
+    this.goneBack1 = this.goneBack1.bind(this)
+  
+  }
+  
   async componentDidMount() {
     await Font.loadAsync({
       'header-font': require('./../assets/fonts/JosefinSans-Regular.ttf'),
@@ -21,6 +26,11 @@ export default class TheHeader extends React.Component {
   toggleBackVisible = (visible) => {
     this.setState({backButtonVisible: visible})
   }
+
+ goneBack1 = () => {
+  //  alert("we are in the header!")
+   this.props.goneBackToCamera()
+ }
 
 
   render() {
@@ -42,12 +52,16 @@ export default class TheHeader extends React.Component {
       // </View>
 
       <View >
+      
+      {/* {this.state.camera && <Camera />} */}
 
       
       {this.state.fontLoaded ? 
     
         (<Header
-          leftComponent={<Icon name='chevron-left' type='entypo'/>}
+          statusBarProps={{ barStyle: 'light-content', hidden: true }}
+          leftComponent={<Icon name='chevron-left' type='entypo' paddingTop='0' onPress={() => {this.goneBack1()} }/> }
+          // leftComponent={{icon: 'arrow-bold-left', type: 'entypo', style: {margin: 20 }}}
           centerComponent={{ text: 'picQuick', style: styles.textStyle }}
           outerContainerStyles={{ backgroundColor: '#025265', justifyContent: 'center'}}
         />)
@@ -62,7 +76,7 @@ export default class TheHeader extends React.Component {
 
 const styles = StyleSheet.create({
   textStyle: {
-    paddingTop: 20,
+    paddingTop: 25,
     fontSize: 40,
     color: '#A2E4F4',
     backgroundColor: '#025265',
