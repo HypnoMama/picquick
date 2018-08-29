@@ -74,12 +74,12 @@ export default class MyCamera extends React.Component {
             <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
 
                   <FlatList style={styles.flatview}
-                    data={predictions.map(prediction => ({
-                      key: `${prediction.name} ${prediction.value}`,
-                    }))}
-                    renderItem={({ item }) => (
-                      <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
-                    )}
+                    // data={predictions.map(prediction => ({
+                    //   key: `${prediction.name} ${prediction.value}`,
+                    // }))}
+                    // renderItem={({ item }) => (
+                    //   <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
+                    // )}
                   />
 
                   <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
