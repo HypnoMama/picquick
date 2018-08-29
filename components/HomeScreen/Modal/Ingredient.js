@@ -59,6 +59,9 @@ export default class Ingredient extends React.Component {
           },
           text: 'Delete',
           type: 'delete',
+          backgroundColor: '#DC1500',
+          borderColor: 'black',
+
         }
       ],
       rowId: this.props.index,
