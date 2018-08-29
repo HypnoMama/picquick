@@ -16,7 +16,10 @@ export default class HomeScreen extends React.Component {
     }
     this.getPredictions = this.getPredictions.bind(this);
     this.goneBack = this.goneBack.bind(this);
+    this.goneToModal = this.goneToModal.bind(this);
   }
+
+  
 
   getPredictions(clarifaiData) {
     this.setState({predictions: clarifaiData})   
@@ -25,14 +28,21 @@ export default class HomeScreen extends React.Component {
   goneBack() {
 
     this.setState({goneBack: !this.state.goneBack, predictions: false})
+    
+  }
+
+  goneToModal() {
+
+    this.setState({goneBackToModal: false, goneBack: true})
   }
 
   render() {
 
+    
     let theComponent;
-      !this.state.predictions && !this.state.goneBack ? 
+      !this.state.predictions && !this.state.goneBack && !this.state.goneBackToModal ? 
       theComponent = <MyCamera getPredictions={this.getPredictions} goneBackToCamera={this.goneBack} />
-      : theComponent = <ModalScreen predictions={this.state.predictions} goneBackToCamera={this.goneBack} />
+      : theComponent = <ModalScreen predictions={this.state.predictions} goBackToModalScreen={this.goneToModal} goneBackToCamera={this.goneBack} />
 
     return (
       <View style={styles.container}>
