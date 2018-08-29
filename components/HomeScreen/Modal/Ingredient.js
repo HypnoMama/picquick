@@ -68,7 +68,7 @@ export default class Ingredient extends React.Component {
     return (
 
       <Swipeout {...swipeSettings} >
-        <View>        
+        <View style={styles.flatListStyle}>        
           {this.filterValues(this.itemName)}
         </View>
       </Swipeout>
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   container: {   
     height: 45,
-    backgroundColor: '#68BED9',
+    backgroundColor: '#A2E5F4',
     borderColor: '#4292A8',
     borderWidth: 2,
     borderRadius: 10,
@@ -101,7 +101,10 @@ const styles = StyleSheet.create({
     height: 60,
     fontSize: 30,
     textAlign: 'center',
-  }
+  },
+  flatListStyle: {
+    backgroundColor: '#A2E5F4',
+  },
 })
 
 

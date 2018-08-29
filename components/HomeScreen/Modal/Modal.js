@@ -22,8 +22,6 @@ export default class ModalScreen extends React.Component {
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
   }
-
-  
  
   refreshFlatList = (activeKey) => {
     this.setState((prevState) => {
@@ -65,19 +63,18 @@ export default class ModalScreen extends React.Component {
     
 
     return (
-
       
-      
-      <ScrollView>
+      <ScrollView style={styles.flatListStyle}>
 
-        <View>
+        <View style={styles.flatListStyle} >
        
           <FlatList 
             ref={'flatList'}
             data={this.state.listItems}
             keyExtractor={this._keyExtractor}
             extraData={this.state.listItems}
-            renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
+            renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
+                 
           />
 
           <Button onPress={() => {this.toggleModal()}} 
@@ -126,15 +123,10 @@ export default class ModalScreen extends React.Component {
 
         </View>
 
-        </ScrollView>
+      </ScrollView>
     )
-      }
- 
-      
   }
-
-  
-
+}
 
 const styles = StyleSheet.create ({
   container: {
@@ -142,6 +134,9 @@ const styles = StyleSheet.create ({
     marginLeft: 80,
     borderRadius: 6,
     backgroundColor: 'pink'
+  },
+  flatListStyle: {
+    backgroundColor: '#A2E5F4',
   },
   modalStyle: {
     shadowRadius: 10,
@@ -153,7 +148,7 @@ const styles = StyleSheet.create ({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 4,
-    borderColor: "rgba(0, 0, 0, 0.1)"
+    borderColor: "rgba(0, 0, 0, 0.1)",
   },
   buttonStyle: {
     fontSize: 18, color: 'white'
