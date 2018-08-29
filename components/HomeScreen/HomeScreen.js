@@ -5,6 +5,7 @@ import TheHeader from '../Header';
 import MyCamera from './Camera';
 import ModalScreen from './Modal/Modal';
 import RecipeScreen from './../RecipeScreen/RecipeScreen';
+import OpeningScreen from './../OpeningScreen'
 
 export default class HomeScreen extends React.Component {
 
@@ -12,7 +13,8 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       cameraClicked: false,
-      goneBack: false
+      goneBack: false,
+      isLoading: true,
     }
     this.getPredictions = this.getPredictions.bind(this);
     this.goneBack = this.goneBack.bind(this);
@@ -34,15 +36,24 @@ export default class HomeScreen extends React.Component {
   goneToModal() {
 
     this.setState({goneBackToModal: false, goneBack: true})
+  
+  componentDidMount() {
+    setTimeout( () => {this.setState({isLoading: false})}, 5000);
   }
 
   render() {
 
     
     let theComponent;
-      !this.state.predictions && !this.state.goneBack && !this.state.goneBackToModal ? 
-      theComponent = <MyCamera getPredictions={this.getPredictions} goneBackToCamera={this.goneBack} />
-      : theComponent = <ModalScreen predictions={this.state.predictions} goBackToModalScreen={this.goneToModal} goneBackToCamera={this.goneBack} />
+
+    this.state.isLoading ?
+      theComponent = <OpeningScreen />
+      :
+      (
+        !this.state.predictions && !this.state.goneBack && !this.state.goneBackToModal ? 
+        theComponent = <MyCamera getPredictions={this.getPredictions} goneBackToCamera={this.goneBack} />
+        : theComponent = <ModalScreen predictions={this.state.predictions} goBackToModalScreen={this.goneToModal} goneBackToCamera={this.goneBack} />
+      )
 
     return (
       <View style={styles.container}>
