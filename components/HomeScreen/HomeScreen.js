@@ -26,7 +26,8 @@ export default class HomeScreen extends React.Component {
 
     this.state.isLoading ?
       theComponent = <OpeningScreen />
-      :  theComponent = <MyCamera navigation={this.props.navigation}/>
+      :
+      theComponent = <MyCamera navigation={this.props.navigation}/>
 
     return (
       <View style={styles.container}>

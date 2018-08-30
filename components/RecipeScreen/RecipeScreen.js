@@ -74,7 +74,7 @@ export default class RecipeScreen extends React.Component {
 const styles = StyleSheet.create ({
   viewStyle: {
     flex: 0,
-    backgroundColor: '#A2E5F4',
+    backgroundColor: '#1D8295',
     height: '100%',
     width: '100%'
   },

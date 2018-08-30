@@ -59,6 +59,9 @@ export default class Ingredient extends React.Component {
           },
           text: 'Delete',
           type: 'delete',
+          backgroundColor: '#DC1500',
+          borderColor: 'black',
+
         }
       ],
       rowId: this.props.index,
@@ -68,7 +71,7 @@ export default class Ingredient extends React.Component {
     return (
 
       <Swipeout {...swipeSettings} >
-        <View>        
+        <View style={styles.flatListStyle}>        
           {this.filterValues(this.itemName)}
         </View>
       </Swipeout>
@@ -78,30 +81,32 @@ export default class Ingredient extends React.Component {
 
 
 const styles = StyleSheet.create({
-  flexStyle: {
-    flex: 1,
-    flexDirection: 'column',
-  },
   container: {   
     height: 45,
-    backgroundColor: '#68BED9',
+    width: '70%',
+    backgroundColor: '#006578',
     borderColor: '#4292A8',
     borderWidth: 2,
     borderRadius: 10,
     borderColor: "#000708",
     shadowColor: '#2E302D',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 1,
-    alignItems: 'stretch',
     margin: 10,
   },
   textStyle: {
     height: 60,
     fontSize: 30,
     textAlign: 'center',
-  }
+    color: '#FFFAF0'
+  },
+  flatListStyle: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#1D8295',
+  },
 })
 
 
