@@ -8,7 +8,7 @@ export default class LoadingScreen extends React.Component {
 
         <View style={styles.viewStyle}>
           <Text style={styles.loadText}>Loading</Text>
-          <ActivityIndicator size="large" color="#0000ff" />
+          <ActivityIndicator size="large" color="#FFFAF0" />
         </View>
     )
   }
@@ -16,12 +16,16 @@ export default class LoadingScreen extends React.Component {
 
 const styles = StyleSheet.create ({
   viewStyle: {
-    flex: 1,
+    flex: 0,
     padding: 20, 
     alignItems: 'center',
     backgroundColor: '#1D8295',
+    justifyContent: 'center',
+    height: '100%',
+    width: '100%'
   },
   loadText: {
     fontSize: 30,
+    color: '#FFFAF0'
   }
 });
