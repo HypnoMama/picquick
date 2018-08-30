@@ -67,10 +67,10 @@ export default class MyCamera extends React.Component {
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);
-    this.setState({isLoading: false})
     if (!this.state.predictions) {
       this.setState({predictions: predictions.outputs[0].data.concepts})
     }
+    this.setState({isLoading: false})
     this.props.navigation.navigate('ModalScreen',  {predictions: this.state.predictions})
   };
 
