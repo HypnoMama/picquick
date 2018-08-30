@@ -59,7 +59,6 @@ export default class MyCamera extends React.Component {
     } catch (error) {
       console.log(error)
     };
-  
   };
 
   detect = async () => {
@@ -67,11 +66,8 @@ export default class MyCamera extends React.Component {
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);
-    if (!this.state.predictions) {
-      this.setState({predictions: predictions.outputs[0].data.concepts})
-    }
     this.setState({isLoading: false})
-    this.props.navigation.navigate('ModalScreen',  {predictions: this.state.predictions})
+    this.props.navigation.navigate('ModalScreen', {predictions: predictions.outputs[0].data.concepts})
   };
 
   render() {
@@ -90,7 +86,8 @@ export default class MyCamera extends React.Component {
             <LoadingScreen />
 
           </View>
-        )
+        );
+
     } else {
 
         return (

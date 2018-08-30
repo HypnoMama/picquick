@@ -73,9 +73,6 @@ const styles = StyleSheet.create ({
     height: '100%',
     width: '100%'
   },
-  loadText: {
-    fontSize: 30,
-  },
   cardStyle: {
     backgroundColor: '#FFFAF0',
     borderRadius: 10,

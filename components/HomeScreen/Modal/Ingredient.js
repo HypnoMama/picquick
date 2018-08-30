@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableHighlight, Alert } from 'react-native';
+import { Card } from 'react-native-elements';
 import Swipeout from 'react-native-swipeout';
 
 export default class Ingredient extends React.Component {
@@ -82,25 +83,20 @@ export default class Ingredient extends React.Component {
 
 const styles = StyleSheet.create({
   container: {   
-    height: 45,
-    width: '70%',
-    backgroundColor: '#006578',
+    width: '100%',
+    backgroundColor: '#fffaf0',
     borderColor: '#4292A8',
-    borderWidth: 2,
-    borderRadius: 10,
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
     borderColor: "#000708",
-    shadowColor: '#2E302D',
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
     elevation: 1,
-    margin: 10,
   },
   textStyle: {
-    height: 60,
-    fontSize: 30,
+    paddingTop: 8,
+    height: 40,
+    fontSize: 18,
     textAlign: 'center',
-    color: '#FFFAF0'
+    color: "#000708",
   },
   flatListStyle: {
     alignItems: 'center',

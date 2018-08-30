@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { Button } from 'react-native-elements' 
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
 
@@ -63,30 +64,35 @@ export default class ModalScreen extends React.Component {
     
 
     return (
-      
-      <ScrollView style={styles.flatListStyle}>
 
-        <View style={styles.flatListStyle} >
-       
+      <View style={styles.viewStyle}>
+      
+        <ScrollView containerStyle={{flex:1}}>
+
+          <Text style={styles.textStyle}>{'Ingredient List'}</Text>
+
           <FlatList 
             ref={'flatList'}
             data={this.state.listItems}
             keyExtractor={this._keyExtractor}
             extraData={this.state.listItems}
             renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
-                 
           />
+
+          <Text>{' '}</Text>
 
           <Button onPress={() => {this.toggleModal()}} 
             title="Add item"
-            containerStyle={styles.container}>
+            buttonStyle={styles.buttonStyle}
+            backgroundColor='#006578'>
           </Button>
 
           <Text>{' '}</Text>
 
            <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
             title="Confirm"
-            containerStyle={styles.container} >
+            buttonStyle={styles.buttonStyle}
+            backgroundColor='#006578' >
           </Button>
          
           <Modal
@@ -121,22 +127,26 @@ export default class ModalScreen extends React.Component {
 
           </Modal>
 
-        </View>
+        </ScrollView>
 
-      </ScrollView>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create ({
-  container: {
-    marginRight: 80,
-    marginLeft: 80,
-    borderRadius: 6,
-    backgroundColor: 'pink'
-  },
-  flatListStyle: {
+  viewStyle: {
     backgroundColor: '#1D8295',
+    height: '100%',
+    width: '100%',
+    justifyContent: 'center'
+  },
+  buttonStyle: {
+    marginLeft: 0, 
+    marginRight: 0, 
+    marginBottom: 0, 
+    borderRadius: 8,
+    borderWidth: 2,
   },
   modalStyle: {
     shadowRadius: 10,
@@ -150,7 +160,8 @@ const styles = StyleSheet.create ({
     borderRadius: 4,
     borderColor: "rgba(0, 0, 0, 0.1)",
   },
-  buttonStyle: {
-    fontSize: 18, color: 'white'
-  }
+  textStyle: {
+    fontSize: 30,
+    textAlign: 'center',
+  },
 })
