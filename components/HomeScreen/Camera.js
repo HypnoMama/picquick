@@ -4,6 +4,7 @@ import { Icon, Header } from 'react-native-elements';
 import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 import ApiKeys from '../../ApiKeys';
 import TheHeader from '../Header';
+import LoadingScreen from './../LoadingScreen'
 
 const Clarifai = require('clarifai');
 const clarifai = new Clarifai.App({
@@ -15,8 +16,8 @@ export default class MyCamera extends React.Component {
 
   state = {
     hasCameraPermission: null,
-    predictions: [],
     headerVisible: true,
+    isLoading: false,
   };
 
   async componentDidMount() {
@@ -25,69 +26,90 @@ export default class MyCamera extends React.Component {
   }
 
   capturePhoto = async () => {
-    if (this.camera) {
-      let photo = await this.camera.takePictureAsync();
-      return photo.uri;
+    try {
+      if (this.camera) {
+        let photo = await this.camera.takePictureAsync();
+        return photo.uri;
+      }
+    } catch (error) {
+      console.log (error)
     }
   };
 
   resize = async photo => {
-    let manipulatedImage = await ImageManipulator.manipulate(
-      photo,
-      [{ resize: { height: 300, width: 300 } }],
-      { base64: true }
-    );
+    try {
+      let manipulatedImage = await ImageManipulator.manipulate(
+        photo,
+        [{ resize: { height: 300, width: 300 } }],
+        { base64: true }
+      );
     return manipulatedImage.base64;
+        } catch (error) {
+      console.log(error)
+    };
   };
 
   predict = async image => {
-    let predictions = await clarifai.models.predict(
-      Clarifai.FOOD_MODEL,
-      image
-    );
-    return predictions;
-    
+    try {
+      let predictions = await clarifai.models.predict(
+        Clarifai.FOOD_MODEL,
+        image
+      );
+      return predictions;
+    } catch (error) {
+      console.log(error)
+    };
+  
   };
 
   detect = async () => {
+    this.setState({isLoading: true})
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
-    let predictions = await this.predict(resized);    
-    this.props.navigation.navigate('ModalScreen',  {predictions: predictions.outputs[0].data.concepts})
+    let predictions = await this.predict(resized);
+    this.setState({isLoading: false})
+    if (!this.state.predictions) {
+      this.setState({predictions: predictions.outputs[0].data.concepts})
+    }
+    this.props.navigation.navigate('ModalScreen',  {predictions: this.state.predictions})
   };
 
   render() {
+
     const { hasCameraPermission, predictions } = this.state;
+
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
       return <Text>Please Allow Camera Permissions</Text>;
+    } else if (this.state.isLoading){
+        return(
+
+          <View style={styles.viewStyle}>
+
+            <LoadingScreen />
+
+          </View>
+        )
     } else {
-      return (
 
+        return (
         
-        <View style={{ flex: 1 }}>
+          <View style={{ flex: 1 }}>
 
-            <Camera ref={ref => {this.camera = ref;}} style={{ flex: 1 }} type={this.state.type} >
+              <Camera ref={ref => this.camera = ref} style={{ flex: 1 }} type={Camera.Constants.Type.back} >
 
-                  <FlatList style={styles.flatview}
-                    // data={predictions.map(prediction => ({
-                    //   key: `${prediction.name} ${prediction.value}`,
-                    // }))}
-                    // renderItem={({ item }) => (
-                    //   <Text style={{ paddingLeft: 15, color: 'white', fontSize: 20 }}>{item.key}</Text>
-                    // )}
-                  />
+                <FlatList style={styles.flatview} />
 
-                  <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
+                <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
 
-                    <Icon raised name='camera' color='black' />
-                    
-                  </TouchableOpacity>
-            
-            </Camera>
-        
-        </View>
+                  <Icon raised name='camera' color='black' />
+                  
+                </TouchableOpacity>
+              
+              </Camera>
+          
+          </View>
       );
     }
   }
