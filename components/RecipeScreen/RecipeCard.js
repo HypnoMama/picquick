@@ -23,7 +23,7 @@ export default class RecipeCard extends React.Component {
 
         <Button
           backgroundColor='#006578'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8}}
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1}}
           title='View Recipe' 
         />
         

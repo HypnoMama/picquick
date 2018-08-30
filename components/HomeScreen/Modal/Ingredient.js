@@ -85,10 +85,9 @@ const styles = StyleSheet.create({
   container: {   
     width: '100%',
     backgroundColor: '#fffaf0',
-    borderColor: '#4292A8',
-    borderBottomWidth: 1,
-    borderTopWidth: 1,
-    borderColor: "#000708",
+    // borderColor: '#4292A8',
+    // borderBottomWidth: 1,
+    // borderColor: "#9b9b9b",
     elevation: 1,
   },
   textStyle: {

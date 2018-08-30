@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
-import { Button } from 'react-native-elements' 
+import { Card, Button } from 'react-native-elements' 
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
 
@@ -69,31 +69,31 @@ export default class ModalScreen extends React.Component {
       
         <ScrollView containerStyle={{flex:1}}>
 
-          <Text style={styles.textStyle}>{'Ingredient List'}</Text>
+          <Card title="Ingredients" dividerStyle={{backgroundColor: '#4292A8'}} containerStyle={styles.cardStyle}>
+            <FlatList 
+              ref={'flatList'}
+              data={this.state.listItems}
+              keyExtractor={this._keyExtractor}
+              extraData={this.state.listItems}
+              renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
+            />
 
-          <FlatList 
-            ref={'flatList'}
-            data={this.state.listItems}
-            keyExtractor={this._keyExtractor}
-            extraData={this.state.listItems}
-            renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
-          />
+            <Text>{' '}</Text>
 
-          <Text>{' '}</Text>
+            <Button onPress={() => {this.toggleModal()}} 
+              title="Add item"
+              buttonStyle={styles.buttonStyle}
+              backgroundColor='#006578'>
+            </Button>
 
-          <Button onPress={() => {this.toggleModal()}} 
-            title="Add item"
-            buttonStyle={styles.buttonStyle}
-            backgroundColor='#006578'>
-          </Button>
+            <Text>{' '}</Text>
 
-          <Text>{' '}</Text>
-
-           <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
-            title="Confirm"
-            buttonStyle={styles.buttonStyle}
-            backgroundColor='#006578' >
-          </Button>
+             <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
+              title="Confirm"
+              buttonStyle={styles.buttonStyle}
+              backgroundColor='#006578' >
+            </Button>
+          </Card>
          
           <Modal
             style={styles.modalStyle}
@@ -146,7 +146,7 @@ const styles = StyleSheet.create ({
     marginRight: 0, 
     marginBottom: 0, 
     borderRadius: 8,
-    borderWidth: 2,
+    borderWidth: 1,
   },
   modalStyle: {
     shadowRadius: 10,
@@ -163,5 +163,9 @@ const styles = StyleSheet.create ({
   textStyle: {
     fontSize: 30,
     textAlign: 'center',
+  },
+    cardStyle: {
+    backgroundColor: '#FFFAF0',
+    borderRadius: 10,
   },
 })
