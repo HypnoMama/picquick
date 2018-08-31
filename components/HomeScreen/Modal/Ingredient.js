@@ -10,7 +10,6 @@ export default class Ingredient extends React.Component {
       activeRowKey: null,
     }
   }
-
  
   itemName = this.props.item
  
@@ -49,7 +48,7 @@ export default class Ingredient extends React.Component {
                   
                   this.props.allItems.splice(this.props.index, 1);
                   this.props.parentFlatList.refreshFlatList(deletingRow);
-                  
+          
                 }
                   
                 },
@@ -78,7 +77,6 @@ export default class Ingredient extends React.Component {
     )
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {   

@@ -46,6 +46,7 @@ export default class RecipeScreen extends React.Component {
 
 
     if(this.state.isLoading){
+      
       return(
 
         <View style={styles.viewStyle}>

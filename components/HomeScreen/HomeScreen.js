@@ -5,6 +5,9 @@ import OpeningScreen from './../OpeningScreen'
 
 
 export default class HomeScreen extends React.Component {
+  static navigationOptions = {
+    drawerLabel: 'Home'
+  }
 
   constructor(props) {
     super(props);

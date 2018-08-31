@@ -7,7 +7,6 @@ export default class LoadingScreen extends React.Component {
 
       <View style={styles.viewStyle}>
         <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
-        <Image style={styles.imageStyle2} source={require('./../assets/logo-full.png')} />
       </View>
     )
   }

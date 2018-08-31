@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { Image, View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { Card, Button } from 'react-native-elements' 
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
 
@@ -64,30 +65,37 @@ export default class ModalScreen extends React.Component {
 
     return (
       
-      <ScrollView style={styles.flatListStyle}>
 
         <View style={styles.flatListStyle} >
        
-          <FlatList 
-            ref={'flatList'}
-            data={this.state.listItems}
-            keyExtractor={this._keyExtractor}
-            extraData={this.state.listItems}
-            renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
-                 
-          />
+        <ScrollView containerStyle={{flex:1}}>
 
-          <Button onPress={() => {this.toggleModal()}} 
-            title="Add item"
-            containerStyle={styles.container}>
-          </Button>
+          <Card title="Ingredients" dividerStyle={{backgroundColor: '#4292A8'}} containerStyle={styles.cardStyle}>
+            <FlatList 
+              ref={'flatList'}
+              data={this.state.listItems}
+              keyExtractor={this._keyExtractor}
+              extraData={this.state.listItems}
+              renderItem={({item, index}) => (<Ingredient item={item} allItems={theList} index={index} parentFlatList={this} />)}
+            />
 
-          <Text>{' '}</Text>
+            <Text>{' '}</Text>
 
-           <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
-            title="Confirm"
-            containerStyle={styles.container} >
-          </Button>
+            <Button onPress={() => {this.toggleModal()}} 
+              title="Add item"
+              buttonStyle={styles.buttonStyle}
+              backgroundColor='#006578'>
+            </Button>
+
+            <Text>{' '}</Text>
+
+             <Button onPress={() => {this.props.navigation.navigate('RecipeScreen', {listItems: this.state.listItems})}} 
+              title="Confirm"
+              buttonStyle={styles.buttonStyle}
+              backgroundColor='#006578' >
+            </Button>
+
+          </Card>
          
           <Modal
             style={styles.modalStyle}
@@ -104,7 +112,6 @@ export default class ModalScreen extends React.Component {
               console.log("closed!")
           }}
           >
-            
              <TextInput 
               style={styles.modalContent}
               placeholder="Add item"
@@ -121,9 +128,22 @@ export default class ModalScreen extends React.Component {
 
           </Modal>
 
-        </View>
 
       </ScrollView>
+
+        <Logo />
+
+      </View>
+    )
+  }
+}
+
+class Logo extends React.Component {
+  render() {
+    return(
+      <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
+        <Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />
+      </View>
     )
   }
 }
@@ -150,7 +170,15 @@ const styles = StyleSheet.create ({
     borderRadius: 4,
     borderColor: "rgba(0, 0, 0, 0.1)",
   },
-  buttonStyle: {
-    fontSize: 18, color: 'white'
+  textStyle: {
+    fontSize: 30,
+    textAlign: 'center',
+  },
+    cardStyle: {
+    backgroundColor: '#FFFAF0',
+    borderRadius: 10,
+  },
+  imageStyle: {
+    width: 200,
   }
 })

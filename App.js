@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import HomeScreen from './components/HomeScreen/HomeScreen';
 import { createStackNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 import MyCamera from './components/HomeScreen/Camera';
 import RecipeScreen from './components/RecipeScreen/RecipeScreen';
 import ModalScreen from './components/HomeScreen/Modal/Modal'
@@ -18,7 +19,16 @@ const RootStack = createStackNavigator(
     initialRouteName: 'Home'
   }
 );
-
+ 
+const DrawerStack = createDrawerNavigator({
+  Home: HomeScreen,
+  Camera: MyCamera,
+}, {
+  initialRouteName: 'Home',
+  contentOptions: {
+    activeTintColor: '#e91e63',
+  },
+});
 
 export default class App extends React.Component {
 
