@@ -2,6 +2,11 @@ import React from 'react';
 import { View, ScrollView, Text, TouchableOpacity, FlatList, Button, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
+import { Icon } from 'react-native-elements';
+import Drawer from '../../config-drawer-navigation';
+import { navigation, DrawerActions } from 'react-navigation';
+
+
 
 const screen = Dimensions.get('window');
 
@@ -22,6 +27,18 @@ export default class ModalScreen extends React.Component {
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
   }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+      // drawerLabel: 'camera',
+      headerRight: (
+        <TouchableOpacity onPress={() => {navigation.navigate('DrawerScreen')}}>
+          <Icon name="menu" type='react-native-vector-icons' size={30} />
+        </TouchableOpacity>
+      )
+    };
+  };
+  
 
   
  
@@ -61,7 +78,6 @@ export default class ModalScreen extends React.Component {
     let theList = this.state.listItems
 
     const { navigation }  = this.props;
-    console.log(this.state.listItems)
     
 
     return (
@@ -79,9 +95,17 @@ export default class ModalScreen extends React.Component {
             extraData={this.state.listItems}
             renderItem={({item, index}) => (<Ingredient item={item} allItems={theList}index={index} parentFlatList={this} />)}        
           />
+          {/* <Drawer /> */}
 
           <Button onPress={() => {this.toggleModal()}} 
             title="Add item"
+            containerStyle={styles.container}>
+          </Button>
+
+          <Text>{'  '}</Text>
+
+          <Button onPress={() => {this.props.navigation.navigate('DrawerOpen')}} 
+            title="Open Drawer"
             containerStyle={styles.container}>
           </Button>
 
