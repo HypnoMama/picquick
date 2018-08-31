@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Image, Alert } from 'react-native';
+import { View, Text, ActivityIndicator, StyleSheet, Image, Alert, Linking } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Review from './Rating';
 import ApiKeys from '../../ApiKeys';
@@ -17,14 +17,18 @@ export default class RecipeCard extends React.Component {
 
       <Card containerStyle={styles.cardStyle} title={each.recipe.label} key={index}>
 
+        <Image source={{uri: each.recipe.image }} style={{width: 300, height: 300, borderWidth: 1}}/>
+        
+        <Text>{' '}</Text>
+
         <RecipeIngredients data={each.recipe.ingredients}/>
 
         <Text>{' '}</Text>
 
         <Button
-          backgroundColor='#006578'
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1}}
-          title='View Recipe' 
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
+          title='View Recipe'
+          onPress = { ()=>{ Linking.openURL(each.recipe.url)} }
         />
         
       </Card>

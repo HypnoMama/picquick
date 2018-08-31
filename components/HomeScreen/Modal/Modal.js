@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
+import { Image, View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
 import { Card, Button } from 'react-native-elements' 
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
@@ -128,7 +128,17 @@ export default class ModalScreen extends React.Component {
           </Modal>
 
         </ScrollView>
+          <Logo />
+       </View>
+    )
+  }
+}
 
+class Logo extends React.Component {
+  render() {
+    return(
+      <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
+        <Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />
       </View>
     )
   }
@@ -164,8 +174,14 @@ const styles = StyleSheet.create ({
     fontSize: 30,
     textAlign: 'center',
   },
-    cardStyle: {
+  cardStyle: {
     backgroundColor: '#FFFAF0',
     borderRadius: 10,
   },
+  imageStyle: {
+    width: 200,
+    paddingBottom: 40,
+  }
 })
+
+
