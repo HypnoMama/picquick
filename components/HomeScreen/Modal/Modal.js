@@ -1,13 +1,13 @@
 import React from 'react';
 import { Image, View, ScrollView, Text, TouchableOpacity, FlatList, StyleSheet, TextInput, Platform, Dimensions } from 'react-native';
-import { Card, Button } from 'react-native-elements' 
+import { withNavigation } from 'react-navigation';
+import { Card, Button, Icon } from 'react-native-elements'; 
 import Ingredient from './Ingredient';
 import Modal from 'react-native-modal';
 
 const screen = Dimensions.get('window');
 
 export default class ModalScreen extends React.Component {
-
 
   constructor(props) {
     super(props);
@@ -23,12 +23,23 @@ export default class ModalScreen extends React.Component {
     this.toggleModal = this.toggleModal.bind(this)
     this.renderRecipeScreen = this.renderRecipeScreen.bind(this)
   }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+
+      headerRight: (
+        <TouchableOpacity onPress={() => {navigation.navigate('Camera')}}>
+          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
+        </TouchableOpacity>
+      )
+    };
+  };
  
   refreshFlatList = (activeKey) => {
     this.setState((prevState) => {
       return {
           deletedRowKey: activeKey
-        };        
+      };        
     })
   } 
     
@@ -60,8 +71,6 @@ export default class ModalScreen extends React.Component {
     let theList = this.state.listItems
 
     const { navigation }  = this.props;
-    console.log(this.state.listItems)
-    
 
     return (
 
@@ -128,17 +137,24 @@ export default class ModalScreen extends React.Component {
           </Modal>
 
         </ScrollView>
-          <Logo />
+          <Logo navigation={this.props.navigation}/>
        </View>
     )
   }
 }
 
 class Logo extends React.Component {
+
   render() {
+
     return(
       <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
-        <Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />
+        {/*<Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />*/}
+        <Button onPress={() => {this.props.navigation.navigate('Camera')}} 
+          title="Confirm"
+          buttonStyle={styles.buttonStyle}
+          backgroundColor='#006578' >
+        </Button>
       </View>
     )
   }

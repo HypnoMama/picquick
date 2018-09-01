@@ -1,10 +1,8 @@
 import React from 'react';
-import { ScrollView, Text, View, ActivityIndicator, StyleSheet, Image, Alert } from 'react-native';
+import { ScrollView, Text, View, ActivityIndicator, StyleSheet, Image, Alert, TouchableOpacity } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
-import Header from '../Header';
 import ApiKeys from '../../ApiKeys';
 import RecipeCard from './RecipeCard';
-import TheHeader from '../Header';
 import LoadingScreen from './../LoadingScreen';
 
 export default class RecipeScreen extends React.Component {
@@ -13,6 +11,17 @@ export default class RecipeScreen extends React.Component {
     super(props);
     this.state ={ isLoading: true}
   }
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+
+      headerRight: (
+        <TouchableOpacity onPress={() => {navigation.navigate('Camera')}}>
+          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
+        </TouchableOpacity>
+      )
+    };
+  };
 
   buildRequest() {
     let items = this.props.navigation.getParam('listItems')
@@ -45,7 +54,8 @@ export default class RecipeScreen extends React.Component {
     const { navigation }  = this.props;
 
 
-    if(this.state.isLoading){
+    if (this.state.isLoading){
+
       return(
 
         <View style={styles.viewStyle}>
@@ -53,7 +63,6 @@ export default class RecipeScreen extends React.Component {
           <LoadingScreen />
 
         </View>
-
       )
     }
 

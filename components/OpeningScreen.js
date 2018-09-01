@@ -1,13 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 
-export default class LoadingScreen extends React.Component {
+export default class OpeningScreen extends React.Component {
   render() {
     return (
 
       <View style={styles.viewStyle}>
         <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
-        <Image style={styles.imageStyle2} source={require('./../assets/logo-full.png')} />
       </View>
     )
   }

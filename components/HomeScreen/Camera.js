@@ -1,9 +1,8 @@
 import React from 'react';
 import { Camera, Permissions, ImageManipulator } from 'expo';
 import { Icon, Header } from 'react-native-elements';
-import { TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, TouchableOpacity, FlatList, StyleSheet, Text, View } from 'react-native';
 import ApiKeys from '../../ApiKeys';
-import TheHeader from '../Header';
 import LoadingScreen from './../LoadingScreen'
 
 const Clarifai = require('clarifai');
@@ -18,6 +17,17 @@ export default class MyCamera extends React.Component {
     hasCameraPermission: null,
     headerVisible: true,
     isLoading: false,
+  };
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+
+      headerRight: (
+        <TouchableOpacity onPress={() => {navigation.navigate('Camera')}}>
+          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
+        </TouchableOpacity>
+      )
+    };
   };
 
   async componentDidMount() {
@@ -62,11 +72,11 @@ export default class MyCamera extends React.Component {
   };
 
   detect = async () => {
-    this.setState({isLoading: true})
+    this.setState({isLoading: true});
     let photo = await this.capturePhoto();
     let resized = await this.resize(photo);
     let predictions = await this.predict(resized);
-    this.setState({isLoading: false})
+    this.setState({isLoading: false});
     this.props.navigation.navigate('ModalScreen', {predictions: predictions.outputs[0].data.concepts})
   };
 
@@ -77,16 +87,8 @@ export default class MyCamera extends React.Component {
     if (hasCameraPermission === null) {
       return <View />;
     } else if (hasCameraPermission === false) {
+
       return <Text>Please Allow Camera Permissions</Text>;
-    } else if (this.state.isLoading){
-        return(
-
-          <View style={styles.viewStyle}>
-
-            <LoadingScreen />
-
-          </View>
-        );
 
     } else {
 
@@ -97,6 +99,8 @@ export default class MyCamera extends React.Component {
               <Camera ref={ref => this.camera = ref} style={{ flex: 1 }} type={Camera.Constants.Type.back} >
 
                 <FlatList style={styles.flatview} />
+
+                <ActivityIndicator size="large" color="#FFFAF0" animating={this.state.isLoading} />
 
                 <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
 
