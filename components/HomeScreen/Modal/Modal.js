@@ -28,7 +28,7 @@ export default class ModalScreen extends React.Component {
     return {
 
       headerRight: (
-        <TouchableOpacity onPress={() => {navigation.navigate('Camera')}}>
+        <TouchableOpacity onPress={() => {navigation.navigate('ProfileScreen')}}>
           <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
         </TouchableOpacity>
       )

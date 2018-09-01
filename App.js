@@ -6,14 +6,17 @@ import MyCamera from './components/HomeScreen/Camera';
 import RecipeScreen from './components/RecipeScreen/RecipeScreen';
 import ModalScreen from './components/HomeScreen/Modal/Modal';
 import TheHeader from './components/Header';
+import ProfileScreen from './components/ProfileScreen';
 
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
+    ProfileScreen: ProfileScreen,
     Camera: MyCamera,
     ModalScreen: ModalScreen,
-    RecipeScreen: RecipeScreen,    
+    RecipeScreen: RecipeScreen,
+    
   },
   {
     initialRouteName: 'Home',

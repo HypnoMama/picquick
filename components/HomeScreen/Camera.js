@@ -19,17 +19,6 @@ export default class MyCamera extends React.Component {
     isLoading: false,
   };
 
-  static navigationOptions = ({ navigation }) => {
-    return {
-
-      headerRight: (
-        <TouchableOpacity onPress={() => {navigation.navigate('Camera')}}>
-          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
-        </TouchableOpacity>
-      )
-    };
-  };
-
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
