@@ -10,10 +10,7 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      cameraClicked: false,
-      goneBack: false,
       isLoading: true,
-      goneBackToModal: false,
     }
   }
 
