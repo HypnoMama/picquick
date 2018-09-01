@@ -7,16 +7,17 @@ import RecipeScreen from './components/RecipeScreen/RecipeScreen';
 import ModalScreen from './components/HomeScreen/Modal/Modal';
 import TheHeader from './components/Header';
 import ProfileScreen from './components/ProfileScreen';
+import OpeningScreen from './components/OpeningScreen';
 
 
 const RootStack = createStackNavigator(
   {
     Home: HomeScreen,
-    ProfileScreen: ProfileScreen,
     Camera: MyCamera,
     ModalScreen: ModalScreen,
     RecipeScreen: RecipeScreen,
-    
+    ProfileScreen: ProfileScreen,
+    OpeningScreen: OpeningScreen,
   },
   {
     initialRouteName: 'Home',
@@ -32,6 +33,7 @@ export default class App extends React.Component {
 
   render() {
     return ( <RootStack /> )
+
   }
 }
 

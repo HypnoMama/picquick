@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { AsyncStorage, View, Text, ScrollView, StyleSheet } from 'react-native';
 import MyCamera from './Camera';
 import OpeningScreen from './../OpeningScreen';
 import ProfileScreen from './../ProfileScreen';
-
 
 export default class HomeScreen extends React.Component {
 
@@ -11,23 +10,45 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
+      jwt: '',
+    }
+    this.storeData = this.storeData.bind(this);
+    this.retrieveData = this.retrieveData.bind(this);
+  }
+
+  async storeData() {
+    try {
+      await AsyncStorage.setItem('key', 'test');
+      console.log('Data stored')
+    } catch (error) {
+      // Error saving data
     }
   }
 
-  componentDidMount() {
-    setTimeout( () => {this.setState({isLoading: false})}, 5000);
+  async retrieveData(){
+    try {
+      const value = await AsyncStorage.getItem('key');
+      if (value !== null) {
+        // We have data!!
+        this.setState({jwt: value})
+      }
+     } catch (error) {
+       // Error retrieving data
+     }
   }
 
   render() {
+
+    //this.storeData();
+    //this.retrieveData();
     
     let theComponent;
 
-    this.state.isLoading ?
-      theComponent = <OpeningScreen />
-      :
+    if (!this.state.jwt) {
+      theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
+    } else {
       theComponent = <ProfileScreen navigation={this.props.navigation}/>
-      //<MyCamera navigation={this.props.navigation}/>
-      //Add Profile screen
+    }
 
     return (
       <View style={styles.container}>
