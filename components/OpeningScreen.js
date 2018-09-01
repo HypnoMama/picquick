@@ -1,33 +1,75 @@
 import React from 'react';
 import { View, Text, TextInput, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import { Modal } from 'react-native-modal';
-import { Button } from 'react-native-elements';
+import  Modal   from 'react-native-modal';
+import { Button }  from 'react-native-elements';
 
 export default class OpeningScreen extends React.Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       isModalVisible: false,
       email: '',
       password: '',
+      newUserName: '',
+      newUserEmail: '',
+      newUserPass: '',
+      confirmNewUserPass: '',
     }
     this.toggleModal=this.toggleModal.bind(this);
+    this.userExist = this.userExist.bind(this);
+    this.passMatch = this.passMatch.bind(this);
   }
+
+  users = [
+    {
+      userName: 'Sarah',
+      email: 'test@test.com',
+      password: 'test',
+      passwordConfirm: 'test'
+    },
+    {
+      userName: 'Sam',
+      email: 'sam@sam.com',
+      password: 'test',
+      password: 'test'
+    }
+  ]
 
   toggleModal() {
     this.setState( { isModalVisible: !this.state.isModalVisible })
   }
 
-  sendData(){
+  userExist() {
+    this.users.forEach((user) => {
+      user.email === this.state.newUserEmail 
+      ? alert('You already have an account: Please Log In or Create New Account')
+      : alert('thank you for signing up!')
+      
+    })
+    this.toggleModal()
+  }
+
+  passMatch() {
+
+    !this.state.newUserPass || !this.state.confirmNewUserPass
+    ? alert('Password fields cannot be blank')
+    : this.state.newUserPass != this.state.confirmNewUserPass 
+    ? alert('Passwords must match!')
+    : this.userExist()
+  }
+
+  sendData() {
     //Send data to server
     this.toggleModal();
   }
 
   render() {
+
     return (
 
       <View>
+        
         <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
         <TextInput 
           placeholder="Email"
@@ -36,13 +78,22 @@ export default class OpeningScreen extends React.Component {
         <TextInput 
           placeholder="Password"
           onChangeText={(text) => this.setState({ password: text }) }
-        />
+        /> 
+
+         <Button
+            title='Sign Up'
+            onPress = {() => {             
+             this.toggleModal()
+            }}
+          >            
+         </Button>
 
           <Modal
+            style={styles.modalStyle}
             isVisible = {this.state.isModalVisible}
             animationIn={'slideInLeft'}
             animationOut={'slideOutRight'}
-            backdropColor={'black'}
+            backdropColor={'white'}
             backdropOpacity={0.9}
             animationInTiming={1000}
             animationOutTiming={1000}
@@ -52,16 +103,35 @@ export default class OpeningScreen extends React.Component {
               console.log("closed!")
           }}
           >
+
+            <TextInput 
+              placeholder="Username"
+              onChangeText={(text) => this.setState({ newUserName: text }) }
+             />
             
              <TextInput 
-              placeholder="Add item"
-              onChangeText={(text) => this.setState({ newItemName: text }) }
+              placeholder="Email"
+              onChangeText={(text) => this.setState({ newUserEmail: text }) }
              />
 
+              <TextInput 
+              placeholder="Password"
+              onChangeText={(text) => this.setState({ newUserPass: text }) }
+             />
+
+              <TextInput 
+              placeholder="Confirm Password"
+              onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
+             />
+
+            
+
               <Button
-                title='Add'
-                onPress = {() => {             
-                  console.log('Hello')
+                title='Sign Up'
+                onPress = {() => {
+                  this.passMatch()
+                  
+                  
                 }}
               >            
               </Button>
@@ -72,7 +142,7 @@ export default class OpeningScreen extends React.Component {
   }
 }
 
-const styles = StyleSheet.create ({
+const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
     flexDirection: 'column',
@@ -87,5 +157,17 @@ const styles = StyleSheet.create ({
     imageStyle2: {
     height: 100, 
     width: 200,
-  }
+  },
+  modalStyle: {
+    shadowRadius: 10,
+    justifyContent: 'center',
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 4,
+    borderColor: "rgba(0, 0, 0, 0.1)",
+  },
 });
