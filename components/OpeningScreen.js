@@ -46,7 +46,7 @@ export default class OpeningScreen extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      this.props.storeData();
+      this.props.storeData(this.state.newUserName);
       this.props.retrieveData();
     })
     .catch((error) => {

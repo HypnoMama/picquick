@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Image, Alert, Linking } from 'react-native';
+import { AsyncStorage, View, Text, ActivityIndicator, StyleSheet, Image, Alert, Linking } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import Review from './Rating';
 import ApiKeys from '../../ApiKeys';
@@ -8,12 +8,52 @@ export default class RecipeCard extends React.Component {
 
   constructor(props){
     super(props);
+    this.state = {
+      user: ''
+    }
+  }
+
+  async retrieveData(){
+    try {
+      const value = AsyncStorage.getItem('user')
+      if (value !== null) {
+        this.setState({user: value})
+      }
+     }
+      catch (error) {
+     }
+  }
+
+  saveRecipe(recipe) {
+    fetch('https://picquick.herokuapp.com/recipes', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: this.state.user,
+        recipe: recipe,
+      }),
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      if (responseJson.Response === "Recipe Saved") {
+        alert('Recipe Saved')
+      } else {
+        alert('Save failed')
+      }
+      return
+    });
+  }
+
+  componentDidMount() {
+    this.retrieveData();
   }
 
   render() {
-
     let recipes = this.props.data.hits;
-    let recipeList = recipes.map( (each, index) =>
+    let recipeList = recipes.map( (each, index) => {
 
       <Card containerStyle={styles.cardStyle} title={each.recipe.label} key={index}>
 
@@ -30,10 +70,16 @@ export default class RecipeCard extends React.Component {
           title='View Recipe'
           onPress = { ()=>{ Linking.openURL(each.recipe.url)} }
         />
+
+        <Button
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
+          title='View Recipe'
+          onPress = {() => this.saveRecipe({label: each.recipe.label, ingredients: each.recipe.ingredients, image: each.recipe.image})
+          }
+        />
         
       </Card>
-
-      );
+      });
 
     return(
 

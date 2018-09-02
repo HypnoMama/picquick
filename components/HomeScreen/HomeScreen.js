@@ -10,16 +10,16 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       isLoading: true,
-      jwt: '',
+      user: '',
+      uuid: '',
     }
     this.storeData = this.storeData.bind(this);
     this.retrieveData = this.retrieveData.bind(this);
   }
 
-  async storeData() {
+  async storeData(userName) {
     try {
-      await AsyncStorage.setItem('key', 'test');
-      console.log('Data stored')
+      await AsyncStorage.setItem('user', userName);
     } catch (error) {
       // Error saving data
     }
@@ -27,10 +27,9 @@ export default class HomeScreen extends React.Component {
 
   async retrieveData(){
     try {
-      const value = await AsyncStorage.getItem('key');
+      const value = await AsyncStorage.getItem('user');
       if (value !== null) {
-        // We have data!!
-        this.setState({jwt: value})
+        this.setState({user: value})
       }
      } catch (error) {
        // Error retrieving data
@@ -39,16 +38,16 @@ export default class HomeScreen extends React.Component {
 
   render() {
 
-    //this.storeData();
-    //this.retrieveData();
+    this.storeData('Dave');
+    this.retrieveData();
     
     let theComponent;
 
-    if (!this.state.jwt) {
-      theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
-    } else {
-      theComponent = <ProfileScreen navigation={this.props.navigation}/>
-    }
+    // if (!this.state.user) {
+    //   theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
+    // } else {
+      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user}/>
+    // }
 
     return (
       <View style={styles.container}>
