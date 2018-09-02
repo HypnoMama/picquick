@@ -151,7 +151,7 @@ class Logo extends React.Component {
       <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
         {/*<Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />*/}
         <Button onPress={() => {this.props.navigation.navigate('Camera')}} 
-          title="Confirm"
+          title="Back to Camera"
           buttonStyle={styles.buttonStyle}
           backgroundColor='#006578' >
         </Button>
