@@ -41,12 +41,33 @@ export default class OpeningScreen extends React.Component {
   }
 
   userExist() {
+    return fetch('http://localhost:5000/register', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        newUserName: this.state.newUserName,
+        newUserEmail: this.state.newUserEmail,
+        newUserPass: this.state.newUserPass,
+        confirmNewUserPass: this.state.confirmNewUserPass,
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      return console.log('we got a response!')
+    })  
+    .catch((error) => {
+      return console.log("error!!")
+    })
+    
+  })
     this.users.forEach((user) => {
       user.email === this.state.newUserEmail 
       ? alert('You already have an account: Please Log In or Create New Account')
       : alert('thank you for signing up!')
       
-    })
+    // })
     this.toggleModal()
   }
 
