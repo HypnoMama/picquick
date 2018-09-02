@@ -1,10 +1,42 @@
 import React from 'react';
 import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
 import { Button } from 'react-native-elements';
-import { Col, Row, Grid } from "react-native-easy-grid";
+import { Col, Row, Grid } from "react-native-easy-grid"; 
+import RecipeCard from './components/RecipeScreen/RecipeCard';
 
 export default class ProfileScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      user:  '',
+      recipes: ''
+    }
+  }
+  
+  
+  getSavedRecipes() {
+    fetch('https://picquick.herokuapp.com/recipes', {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({user: responseJson.username, recipes: responseJson.recipes})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+  
+  
   render() {
+
+
+
     return (
 
       <View style={styles.viewStyle}>
@@ -26,10 +58,21 @@ export default class ProfileScreen extends React.Component {
 
             <Col style={styles.profileStyle}>
               <Button 
-              title='Button'
+              title='Take a Pic'
               onPress={() => {this.props.navigation.navigate('Camera')}}
               />
+              <Text>{ ' ' }</Text>
+               <Button 
+              title='Log Out'
+              onPress={() => {this.props.navigation.navigate('HomeScreen')}}
+              />
+
+              {/* </RecipeCard> */}
             </Col>
+
+            
+             
+  
 
           </Row>
         </Grid>
