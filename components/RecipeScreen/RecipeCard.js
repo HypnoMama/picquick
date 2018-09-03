@@ -27,8 +27,8 @@ export default class RecipeCard extends React.Component {
 
   async retrieveId(){
     try {
-      const value = await AsyncStorage.getItem('uuid');
-      if (value !== null) {
+      const id = await AsyncStorage.getItem('uuid');
+      if (id !== null) {
         this.setState({uuid: id});
         console.log(this.state.uuid)
       }
@@ -75,7 +75,9 @@ export default class RecipeCard extends React.Component {
   }
 
   render() {
+
     let recipes = this.props.data.hits;
+    
     let recipeList = recipes.map( (each, index) => 
 
       <Card containerStyle={styles.cardStyle} title={each.recipe.label} key={index}>
