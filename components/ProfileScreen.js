@@ -14,8 +14,8 @@ export default class ProfileScreen extends React.Component {
     }
   }
 
-  getSavedRecipes(userId) {
-    fetch(`https://picquick.herokuapp.com/user/${userId}/recipes`, {
+  getSavedRecipes() {
+    fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
       method: 'get',
       headers: {
         Accept: 'application/json',
@@ -25,17 +25,50 @@ export default class ProfileScreen extends React.Component {
     .then((response) => response.json())
     .then((responseJson) => {
       this.setState({recipes: responseJson.recipes})
+      console.log(responseJson)
     })
     .catch((error) => {
       console.error(error);
     });
   }
 
-  componentDidMount() {
-    this.getSavedRecipes(this.state.uuid)
+  async retrieveId(){
+    try {
+      const id = await AsyncStorage.getItem('uuid');
+      if (id !== null) {
+        console.log("id": id)
+        this.setState({uuid: id})
+      }
+     } catch (error) {
+     }
   }
 
+  async retrieveUser(){
+    try {
+      const value = await AsyncStorage.getItem('uuid');
+      if (value !== null) {
+        console.log("user": value)
+        this.setState({user: value})
+      }
+     } catch (error) {
+     }
+  }
+
+
+    componentDidMount() {
+      this.retrieveUser();
+      this.retrieveId();
+      if(this.user) {
+        this.getSavedRecipes()
+      }
+    }
+  
+
+
   render() {
+
+    
+
     return (
 
       <View style={styles.viewStyle}>
@@ -57,8 +90,13 @@ export default class ProfileScreen extends React.Component {
 
             <Col style={styles.profileStyle}>
               <Button 
-              title='Button'
+              title='Take a pic'
               onPress={() => {this.props.navigation.navigate('Camera')}}
+              />
+
+              <Button 
+              title='Log Out'
+              onPress={() => {this.props.logout()}}
               />
             </Col>
 

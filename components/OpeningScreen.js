@@ -46,8 +46,9 @@ export default class OpeningScreen extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      this.props.storeData(this.state.newUserName, responseJson.Response);
-      this.props.retrieveData();
+      alert("Response in Open": responseJson)
+      this.props.storeUser(this.state.newUserName);
+      this.props.storeId(responseJson.Response)
     })
     .catch((error) => {
       console.error(error);
@@ -72,13 +73,14 @@ export default class OpeningScreen extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
+        userEmail: this.state.email,
+        userPass: this.state.password,
       }),
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        return this.props.storeData();
+        this.props.storeUser();
+        this.props.storeId()
       });
   }
 
@@ -111,7 +113,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
-          backgroundColor={'#fffaf0'}
+          // backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ email: text }) }
         />
@@ -123,7 +125,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
-          backgroundColor={'#fffaf0'}
+          // backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ password: text }) }
         />
@@ -168,7 +170,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            // backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserName: text }) }
            />
@@ -179,7 +181,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            // backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserEmail: text }) }
            />
@@ -190,7 +192,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            // backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserPass: text }) }
            />
@@ -201,7 +203,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            // backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
            />

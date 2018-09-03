@@ -1,0 +1,9 @@
+export default {
+  clarifaiConfig: {
+    API_KEY: "e6f0d71a19464bc6bbb797c2aae3a775"
+  },
+  edamamConfig: {
+    APP_ID: "6abd7328&app",
+    API_KEY: "370fca65bbd607520d1c7ae8ff933d9c"
+  }
+}
