@@ -23,7 +23,7 @@ export default class OpeningScreen extends React.Component {
   }
 
   toggleModal() {
-    this.setState( { isModalVisible: !this.state.isModalVisible })
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   sendData() {
@@ -46,8 +46,8 @@ export default class OpeningScreen extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      this.props.storeData(this.state.newUserName, responseJson.Response);
-      this.props.retrieveData();
+      this.props.storeUser(this.state.newUserName);
+      this.props.retrieveUser();
     })
     .catch((error) => {
       console.error(error);
@@ -65,20 +65,23 @@ export default class OpeningScreen extends React.Component {
   }
 
   userLogin() {
-    return fetch('/login', {
+    return fetch('https://picquick.herokuapp.com/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
+        userEmail: this.state.email,
+        userPass: this.state.password,
       }),
     })
       .then((response) => response.json())
       .then((responseJson) => {
-        return this.props.storeData();
+        this.props.storeUser(responseJson.Response[0].userName);
+        this.props.storeId(responseJson.Response[0].uuid);
+        this.props.retrieveUser();
+        this.props.retrieveId();
       });
   }
 

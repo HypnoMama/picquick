@@ -14,39 +14,64 @@ export default class RecipeCard extends React.Component {
     }
   }
 
-  async retrieveData(){
+  async retrieveUser(){
     try {
-      const value = AsyncStorage.getItem('user')
-      const id = AsyncStorage.getItem('uuid')
+      const value = await AsyncStorage.getItem('user');
+      console.log(value)
       if (value !== null) {
-        this.setState({user: value})
-        this.setState({uuid: id})
+        this.setState({user: value});
       }
-     }
-      catch (error) {
+     } catch (error) {
      }
   }
 
+  async retrieveId(){
+    try {
+      const value = await AsyncStorage.getItem('uuid');
+      if (value !== null) {
+        this.setState({uuid: id});
+        console.log(this.state.uuid)
+      }
+     } catch (error) {
+     }
+  }
+
+  interpolate() {
+    let str = `https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`;
+    return str;
+  }
+
+  onPressFunc(recipe) {
+    this.retrieveUser();
+    this.retrieveId();
+    this.saveRecipe(recipe);
+  }
+
   saveRecipe(recipe) {
-    fetch('https://picquick.herokuapp.com/recipes', {
+    let str = this.interpolate();
+    fetch(str, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        user: this.state.user,
+        userName: this.state.user,
         recipe: recipe,
       }),
     })
     .then((response) => response.json())
     .then((responseJson) => {
       alert('Recipe Saved')
+    })
+    .catch((error) => {
+      console.error(error);
     });
   }
 
   componentDidMount() {
-    this.retrieveData();
+    this.retrieveUser();
+    this.retrieveId();
   }
 
   render() {
@@ -69,10 +94,12 @@ export default class RecipeCard extends React.Component {
           onPress = { ()=>{ Linking.openURL(each.recipe.url)} }
         />
 
+        <Text>{' '}</Text>
+
         <Button
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
-          title='View Recipe'
-          onPress = {() => this.saveRecipe({label: each.recipe.label, image: each.recipe.image})
+          title='Save Recipe'
+          onPress = {() => this.onPressFunc({label: each.recipe.label, image: each.recipe.image})
           }
         />
         

@@ -8,14 +8,12 @@ export default class ProfileScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      user:  '',
-      uuid: '',
       recipes: []
     }
   }
 
   getSavedRecipes(userId) {
-    fetch(`https://picquick.herokuapp.com/user/${userId}/recipes`, {
+    fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
       method: 'get',
       headers: {
         Accept: 'application/json',
@@ -24,7 +22,7 @@ export default class ProfileScreen extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      this.setState({recipes: responseJson.recipes})
+      alert(responseJson.Response);
     })
     .catch((error) => {
       console.error(error);
@@ -32,7 +30,9 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.getSavedRecipes(this.state.uuid)
+    if(this.user) {
+      this.getSavedRecipes()
+    }
   }
 
   render() {
@@ -59,6 +59,13 @@ export default class ProfileScreen extends React.Component {
               <Button 
               title='Button'
               onPress={() => {this.props.navigation.navigate('Camera')}}
+              />
+            </Col>
+
+            <Col style={styles.profileStyle}>
+              <Button 
+              title='Logout'
+              onPress={() => {this.props.logout()}}
               />
             </Col>
 

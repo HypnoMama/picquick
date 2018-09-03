@@ -9,43 +9,77 @@ export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true,
       user: '',
       uuid: '',
     }
-    this.storeData = this.storeData.bind(this);
-    this.retrieveData = this.retrieveData.bind(this);
+    this.storeUser = this.storeUser.bind(this);
+    this.storeId = this.storeId.bind(this);
+    this.retrieveUser = this.retrieveUser.bind(this);
+    this.retrieveId = this.retrieveId.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
-  async storeData(userName, id) {
+  async storeUser(userName) {
     try {
       await AsyncStorage.setItem('user', userName);
+    } catch (error) {
+    }
+  }
+
+  async storeId(id) {
+    try {
       await AsyncStorage.setItem('uuid', id);
     } catch (error) {
     }
   }
 
-  async retrieveData(){
+  async retrieveUser(){
     try {
       const value = await AsyncStorage.getItem('user');
       if (value !== null) {
-        this.setState({user: value})
+        this.setState({user: value});
       }
      } catch (error) {
      }
   }
 
-  render() {
+  async retrieveId(){
+    try {
+      const value = await AsyncStorage.getItem('uuid');
+      if (value !== null) {
+        this.setState({uuid: id});
+      }
+     } catch (error) {
+     }
+  }
 
-    this.storeData('Dave', '1234');
-    this.retrieveData();
+  async logout() {
+    try {
+      await AsyncStorage.removeItem('user');
+      this.setState({user: ''})
+    } catch(error){
+      console.log('there"s an error!')
+    }
+    try {
+      await AsyncStorage.removeItem('uuid');
+      this.setState({uuid: ''})
+    } catch(error) {
+      console.log("Whoops something went wrong")
+    }
+  }
+
+  componentDidMount() {
+    this.retrieveUser();
+  }
+
+  render() {
     
     let theComponent;
 
     if (!this.state.user) {
-      theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
+      theComponent = <OpeningScreen userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
     } else {
-      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user}/>
+      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user} userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId}logout={this.logout}/>
     }
 
     return (
