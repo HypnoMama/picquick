@@ -9,15 +9,18 @@ export default class RecipeCard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      user: ''
+      user: '',
+      uuid: '',
     }
   }
 
   async retrieveData(){
     try {
       const value = AsyncStorage.getItem('user')
+      const id = AsyncStorage.getItem('uuid')
       if (value !== null) {
         this.setState({user: value})
+        this.setState({uuid: id})
       }
      }
       catch (error) {
@@ -38,12 +41,7 @@ export default class RecipeCard extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      if (responseJson.Response === "Recipe Saved") {
-        alert('Recipe Saved')
-      } else {
-        alert('Save failed')
-      }
-      return
+      alert('Recipe Saved')
     });
   }
 
@@ -53,7 +51,7 @@ export default class RecipeCard extends React.Component {
 
   render() {
     let recipes = this.props.data.hits;
-    let recipeList = recipes.map( (each, index) => {
+    let recipeList = recipes.map( (each, index) => 
 
       <Card containerStyle={styles.cardStyle} title={each.recipe.label} key={index}>
 
@@ -74,12 +72,12 @@ export default class RecipeCard extends React.Component {
         <Button
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
           title='View Recipe'
-          onPress = {() => this.saveRecipe({label: each.recipe.label, ingredients: each.recipe.ingredients, image: each.recipe.image})
+          onPress = {() => this.saveRecipe({label: each.recipe.label, image: each.recipe.image})
           }
         />
         
       </Card>
-      });
+      );
 
     return(
 

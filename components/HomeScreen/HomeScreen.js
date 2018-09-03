@@ -17,11 +17,11 @@ export default class HomeScreen extends React.Component {
     this.retrieveData = this.retrieveData.bind(this);
   }
 
-  async storeData(userName) {
+  async storeData(userName, id) {
     try {
       await AsyncStorage.setItem('user', userName);
+      await AsyncStorage.setItem('uuid', id);
     } catch (error) {
-      // Error saving data
     }
   }
 
@@ -32,22 +32,21 @@ export default class HomeScreen extends React.Component {
         this.setState({user: value})
       }
      } catch (error) {
-       // Error retrieving data
      }
   }
 
   render() {
 
-    this.storeData('Dave');
+    this.storeData('Dave', '1234');
     this.retrieveData();
     
     let theComponent;
 
-    // if (!this.state.user) {
-    //   theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
-    // } else {
+    if (!this.state.user) {
+      theComponent = <OpeningScreen userExist={this.state.userExist} storeData={this.storeData} retrieveData={this.retrieveData}/>
+    } else {
       theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user}/>
-    // }
+    }
 
     return (
       <View style={styles.container}>

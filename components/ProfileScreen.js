@@ -4,6 +4,37 @@ import { Button } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class ProfileScreen extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      user:  '',
+      uuid: '',
+      recipes: []
+    }
+  }
+
+  getSavedRecipes(userId) {
+    fetch(`https://picquick.herokuapp.com/user/${userId}/recipes`, {
+      method: 'get',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      this.setState({recipes: responseJson.recipes})
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  }
+
+  componentDidMount() {
+    this.getSavedRecipes(this.state.uuid)
+  }
+
   render() {
     return (
 
