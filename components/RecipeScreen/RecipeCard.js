@@ -17,7 +17,6 @@ export default class RecipeCard extends React.Component {
   async retrieveUser(){
     try {
       const value = await AsyncStorage.getItem('user');
-      console.log(value)
       if (value !== null) {
         this.setState({user: value});
       }
@@ -27,18 +26,12 @@ export default class RecipeCard extends React.Component {
 
   async retrieveId(){
     try {
-      const value = await AsyncStorage.getItem('uuid');
-      if (value !== null) {
+      const id = await AsyncStorage.getItem('uuid');
+      if (id !== null) {
         this.setState({uuid: id});
-        console.log(this.state.uuid)
       }
      } catch (error) {
      }
-  }
-
-  interpolate() {
-    let str = `https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`;
-    return str;
   }
 
   onPressFunc(recipe) {
@@ -48,15 +41,14 @@ export default class RecipeCard extends React.Component {
   }
 
   saveRecipe(recipe) {
-    let str = this.interpolate();
-    fetch(str, {
+    fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName: this.state.user,
+        userName: `${this.state.user}`,
         recipe: recipe,
       }),
     })
