@@ -17,6 +17,7 @@ export default class HomeScreen extends React.Component {
     this.retrieveUser = this.retrieveUser.bind(this);
     this.retrieveId = this.retrieveId.bind(this);
     this.logout = this.logout.bind(this);
+    this.loggedIn = this.loggedIn.bind(this);
   }
 
   async storeUser(userName) {
@@ -45,9 +46,10 @@ export default class HomeScreen extends React.Component {
 
   async retrieveId(){
     try {
-      const value = await AsyncStorage.getItem('uuid');
-      if (value !== null) {
+      const id = await AsyncStorage.getItem('uuid');
+      if (id !== null) {
         this.setState({uuid: id});
+        console.log("set state Id ", this.state.uuid)
       }
      } catch (error) {
      }
@@ -72,14 +74,22 @@ export default class HomeScreen extends React.Component {
     this.retrieveUser();
   }
 
+  loggedIn(uuid, user) {
+    this.setState({user: user})
+    this.setState({uuid: uuid})
+    console.log(this.state.user)
+  }
+
   render() {
+    
+    console.log("HomeScreens ", this.state.uuid)
     
     let theComponent;
 
     if (!this.state.user) {
-      theComponent = <OpeningScreen userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
+      theComponent = <OpeningScreen userExist={this.state.userExist} loggedIn={this.loggedIn} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
     } else {
-      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user} userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId}logout={this.logout}/>
+      theComponent = <ProfileScreen uuid={this.state.uuid} navigation={this.props.navigation} user={this.state.user} userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} logout={this.logout}/>
     }
 
     return (
