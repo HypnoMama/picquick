@@ -46,7 +46,7 @@ export default class ProfileScreen extends React.Component {
 
         <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
 
-          <Image source={{uri: each.image }} style={{width: 300, height: 300, borderWidth: 1}}/>
+          <Image source={{uri: each.image }} style={{width: 100, height: 100, borderWidth: 1}}/>
           
           <Text>{' '}</Text>
 
