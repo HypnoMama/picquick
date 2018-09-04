@@ -229,6 +229,15 @@ export default class OpeningScreen extends React.Component {
             >            
             </Button>
 
+            <Button
+              title='Exit'
+              buttonStyle={styles.buttonStyle}
+              onPress = {() => {
+                this.toggleModal();
+              }}
+            >            
+            </Button>
+
         </Modal>
 
       </View>
