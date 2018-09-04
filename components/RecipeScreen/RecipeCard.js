@@ -97,8 +97,8 @@ export default class RecipeCard extends React.Component {
         <Button
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
           title='Save Recipe'
-          onPress = {() => {this.onPressFunc(each.recipe.url, each.recipe.label, each.recipe.image)
-            alert(typeof each.recipe.image)}
+          onPress = {() => this.onPressFunc(each.recipe.url, each.recipe.label, each.recipe.image)
+           
           }
         />
         
