@@ -17,7 +17,7 @@ export default class RecipeScreen extends React.Component {
 
       headerRight: (
         <TouchableOpacity onPress={() => {navigation.navigate('ProfileScreen')}}>
-          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
+          <Icon name="user" type='font-awesome' size={30} paddingRight={20} />
         </TouchableOpacity>
       )
     };
