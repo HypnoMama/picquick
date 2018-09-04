@@ -130,6 +130,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
+          secureTextEntry={true}
           //backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ password: text }) }
@@ -200,6 +201,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
+            secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserPass: text }) }
@@ -212,6 +214,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
+            secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
