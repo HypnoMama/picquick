@@ -34,13 +34,13 @@ export default class RecipeCard extends React.Component {
      }
   }
 
-  onPressFunc(recipe) {
+  onPressFunc(label, image) {
     this.retrieveUser();
     this.retrieveId();
-    this.saveRecipe(recipe);
+    this.saveRecipe(label, image);
   }
 
-  saveRecipe(recipe) {
+  saveRecipe(label, image) {
     fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
       method: 'POST',
       headers: {
@@ -48,8 +48,9 @@ export default class RecipeCard extends React.Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        userName: `${this.state.user}`,
-        recipe: recipe,
+        userName: this.state.user,
+        label: label,
+        image: image,
       }),
     })
     .then((response) => response.json())
@@ -62,8 +63,12 @@ export default class RecipeCard extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveUser();
-    this.retrieveId();
+    AsyncStorage.getItem("uuid").then((value) => {
+      this.setState({"uuid": value});
+    }).done();
+    AsyncStorage.getItem("user").then((value) => {
+      this.setState({"user": value});
+    }).done();
   }
 
   render() {
@@ -91,7 +96,7 @@ export default class RecipeCard extends React.Component {
         <Button
           buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
           title='Save Recipe'
-          onPress = {() => this.onPressFunc({label: each.recipe.label, image: each.recipe.image})
+          onPress = {() => this.onPressFunc(each.recipe.label, each.recipe.image)
           }
         />
         

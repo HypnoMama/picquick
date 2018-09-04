@@ -45,8 +45,8 @@ export default class HomeScreen extends React.Component {
 
   async retrieveId(){
     try {
-      const value = await AsyncStorage.getItem('uuid');
-      if (value !== null) {
+      const id = await AsyncStorage.getItem('uuid');
+      if (id !== null) {
         this.setState({uuid: id});
       }
      } catch (error) {
@@ -68,8 +68,13 @@ export default class HomeScreen extends React.Component {
     }
   }
 
-  componentDidMount() {
+  getData() {
     this.retrieveUser();
+    this.retrieveId();
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
@@ -77,9 +82,9 @@ export default class HomeScreen extends React.Component {
     let theComponent;
 
     if (!this.state.user) {
-      theComponent = <OpeningScreen userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
+      theComponent = <OpeningScreen userExist={this.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
     } else {
-      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user} userExist={this.state.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId}logout={this.logout}/>
+      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.user} uuid={this.uuid} userExist={this.userExist} storeUser={this.storeUser} storeId={this.storeId} retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} logout={this.logout}/>
     }
 
     return (

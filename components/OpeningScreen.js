@@ -52,7 +52,7 @@ export default class OpeningScreen extends React.Component {
     .catch((error) => {
       console.error(error);
     });
-    this.toggleModal()
+    this.setState({ isModalVisible: !this.state.isModalVisible })
   }
 
   passMatch() {
@@ -78,10 +78,12 @@ export default class OpeningScreen extends React.Component {
     })
       .then((response) => response.json())
       .then((responseJson) => {
+        console.log(responseJson)
         this.props.storeUser(responseJson.Response[0].userName);
         this.props.storeId(responseJson.Response[0].uuid);
         this.props.retrieveUser();
         this.props.retrieveId();
+        // this.props.loggedIn(responseJson.Response[0].uuid, responseJson.Response[0].userName)
       });
   }
 

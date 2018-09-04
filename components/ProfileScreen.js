@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
-import { Button } from 'react-native-elements';
+import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
 export default class ProfileScreen extends React.Component {
@@ -14,7 +14,7 @@ export default class ProfileScreen extends React.Component {
 
   getSavedRecipes(userId) {
     fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
-      method: 'get',
+      method: 'GET',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -22,7 +22,8 @@ export default class ProfileScreen extends React.Component {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      alert(responseJson.Response);
+      this.setState({recipes: responseJson.Response})
+      console.log(this.state.recipes)
     })
     .catch((error) => {
       console.error(error);
@@ -30,17 +31,33 @@ export default class ProfileScreen extends React.Component {
   }
 
   componentDidMount() {
-    if(this.user) {
-      this.getSavedRecipes()
-    }
+    AsyncStorage.getItem("uuid").then((value) => {
+      this.setState({"uuid": value});
+      this.getSavedRecipes(this.state.uuid);
+    }).done();
   }
 
   render() {
+
+    let recipe = this.state.recipes;
+    let recipeList = recipe.map( (each, index) => 
+
+      <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
+
+        <Image source={{uri: each.image }} style={{width: 300, height: 300, borderWidth: 1}}/>
+        
+        <Text>{' '}</Text>
+
+      </Card>
+
+      );
+      
+
     return (
 
       <View style={styles.viewStyle}>
         <Grid>
-
+        {recipeList}
           <Row size={1}>
 
             <Col size={1}>
@@ -71,6 +88,30 @@ export default class ProfileScreen extends React.Component {
 
           </Row>
         </Grid>
+      </View>
+    )
+  }
+}
+
+export class RecipeIngredients extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+  render() {
+
+    let ingredientList = this.props.data;
+    let ingredientItem = ingredientList.map( (each, index) => {
+      return <Text key={index}>{each.text}</Text>
+    });
+
+    return (
+
+      <View>
+
+        {ingredientItem}
+
       </View>
     )
   }
