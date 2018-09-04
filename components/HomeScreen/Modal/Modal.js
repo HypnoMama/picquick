@@ -29,7 +29,7 @@ export default class ModalScreen extends React.Component {
 
       headerRight: (
         <TouchableOpacity onPress={() => {navigation.navigate('ProfileScreen')}}>
-          <Icon name="user" type='font-awesome' size={30} paddingRight={8} />
+          <Icon name="user" type='font-awesome' size={30} paddingRight={20} />
         </TouchableOpacity>
       )
     };
@@ -149,7 +149,8 @@ class Logo extends React.Component {
 
     return(
       <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
-        <Image style={{flex: 1}} source={require('../../../assets/edamam.png')} resizeMode='contain'/>
+        <Image style={{flex: 1, width: 200}} source={require('../../../assets/Clarifai_Logo_FC.png')} resizeMode='contain'/>
+
       </View>
     )
   }
