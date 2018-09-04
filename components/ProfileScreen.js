@@ -92,6 +92,8 @@ export default class ProfileScreen extends React.Component {
               onPress={() => {this.props.navigation.navigate('Camera')}}
               />
 
+              <Text>{' '}</Text>
+
               <Button 
               title='Logout'
               onPress={() => {this.props.logout()}}
