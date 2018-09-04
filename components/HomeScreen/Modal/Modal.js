@@ -150,11 +150,12 @@ class Logo extends React.Component {
     return(
       <View style={{flex: 0, height: 100, flexDirection: 'column', marginTop: 0, alignItems: 'center', justifyContent: 'center', borderTopWidth: 1, backgroundColor: '#006578' }}>
         {/*<Image style={styles.imageStyle} resizeMode={'contain'} source={require('./../../../assets/edamam.png')} />*/}
-        <Button onPress={() => {this.props.navigation.navigate('Camera')}} 
+        {/* <Button onPress={() => {this.props.navigation.navigate('Camera')}} 
           title="Back To Camera"
           buttonStyle={styles.buttonStyle}
           backgroundColor='#006578' >
-        </Button>
+        </Button> */}
+        <Image style={{flex: 1}} source={require('../../../assets/edamam.png')} resizeMode='contain'/>
       </View>
     )
   }
