@@ -39,15 +39,6 @@ export default class ProfileScreen extends React.Component {
     })
   }
 
-  retrieveUser(){
-    try {
-      const value = AsyncStorage.getItem('user');
-      if (value !== null) {
-        this.setState({user: value});
-      }
-     } catch (error) {
-     }
-  }
 
   render() {
 
