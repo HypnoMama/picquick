@@ -34,9 +34,23 @@ export default class ProfileScreen extends React.Component {
       this.setState({"uuid": value});
       this.getSavedRecipes(value);
     }).done();
+    AsyncStorage.getItem('user').then((user) => {
+      this.setState({'user': user})
+    })
+  }
+
+  retrieveUser(){
+    try {
+      const value = AsyncStorage.getItem('user');
+      if (value !== null) {
+        this.setState({user: value});
+      }
+     } catch (error) {
+     }
   }
 
   render() {
+
 
     let recipeList;
 
@@ -72,7 +86,7 @@ export default class ProfileScreen extends React.Component {
             </Col>
 
             <Col size={1}>
-              <Text style={styles.textStyle}>{this.props.user}</Text>
+              <Text style={styles.textStyle}>{this.state.user}</Text>
             </Col>
 
           </Row>
