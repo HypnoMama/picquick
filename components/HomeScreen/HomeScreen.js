@@ -84,7 +84,7 @@ export default class HomeScreen extends React.Component {
     if (!this.state.user) {
       theComponent = <OpeningScreen userExist={this.userExist} storeUser={this.storeUser} storeId={this.storeId}retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} />
     } else {
-      theComponent = <ProfileScreen navigation={this.props.navigation} userExist={this.userExist} storeUser={this.storeUser} storeId={this.storeId} retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} logout={this.logout}/>
+      theComponent = <ProfileScreen navigation={this.props.navigation} user={this.state.user} userExist={this.userExist} storeUser={this.storeUser} storeId={this.storeId} retrieveUser={this.retrieveUser} retrieveId={this.retrieveId} logout={this.logout}/>
     }
 
     return (
