@@ -1,8 +1,9 @@
 import React from 'react';
 import { AsyncStorage, View, Text, ActivityIndicator, StyleSheet, Image, Alert, Linking } from 'react-native';
-import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
+import { Card, ListItem, Button, Rating } from 'react-native-elements';
 import Review from './Rating';
 import ApiKeys from '../../ApiKeys';
+import Icon from 'react-native-vector-icons';
 
 export default class RecipeCard extends React.Component {
 
