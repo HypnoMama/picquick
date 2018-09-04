@@ -130,6 +130,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
+          secureTextEntry={true}
           //backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ password: text }) }
@@ -158,7 +159,7 @@ export default class OpeningScreen extends React.Component {
           isVisible = {this.state.isModalVisible}
           animationIn={'slideInLeft'}
           animationOut={'slideOutRight'}
-          backdropColor={'black'}
+          backdropColor={'#91b1b9'}
           backdropOpacity={0.9}
           animationInTiming={1000}
           animationOutTiming={1000}
@@ -171,6 +172,7 @@ export default class OpeningScreen extends React.Component {
 
           <TextInput 
             placeholder="Username"
+            placeholderTextColor='black'
             height={40}
             borderWidth={1}
             marginBottom={8}
@@ -182,6 +184,7 @@ export default class OpeningScreen extends React.Component {
           
            <TextInput 
             placeholder="Email"
+            placeholderTextColor='black'
             height={40}
             borderWidth={1}
             marginBottom={8}
@@ -193,10 +196,12 @@ export default class OpeningScreen extends React.Component {
 
             <TextInput 
             placeholder="Password"
+            placeholderTextColor='black'
             height={40}
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
+            secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserPass: text }) }
@@ -204,10 +209,12 @@ export default class OpeningScreen extends React.Component {
 
             <TextInput 
             placeholder="Confirm Password"
+            placeholderTextColor='black'
             height={40}
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
+            secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
@@ -218,6 +225,15 @@ export default class OpeningScreen extends React.Component {
               buttonStyle={styles.buttonStyle}
               onPress = {() => {
                 this.userExist();
+              }}
+            >            
+            </Button>
+
+            <Button
+              title='Exit'
+              buttonStyle={styles.buttonStyle}
+              onPress = {() => {
+                this.toggleModal();
               }}
             >            
             </Button>

@@ -35,9 +35,14 @@ export default class ProfileScreen extends React.Component {
       this.setState({"uuid": value});
       this.getSavedRecipes(value);
     }).done();
+    AsyncStorage.getItem('user').then((user) => {
+      this.setState({'user': user})
+    })
   }
 
+
   render() {
+
 
     let recipeList;
 
@@ -83,6 +88,7 @@ export default class ProfileScreen extends React.Component {
                 onPress={() => {this.props.logout()}}
                 />
               </View>
+
             </Col>
 
           </Row>
