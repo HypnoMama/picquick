@@ -8,12 +8,11 @@ export default class ProfileScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      recipes: []
     }
   }
 
-  getSavedRecipes(userId) {
-    fetch(`https://picquick.herokuapp.com/user/${this.state.uuid}/recipes`, {
+  getSavedRecipes(userId) {    
+    fetch(`https://picquick.herokuapp.com/user/${userId}/recipes`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -30,39 +29,42 @@ export default class ProfileScreen extends React.Component {
     });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     AsyncStorage.getItem("uuid").then((value) => {
       this.setState({"uuid": value});
-      this.getSavedRecipes(this.state.uuid);
+      this.getSavedRecipes(value);
     }).done();
   }
 
   render() {
 
-    let recipe = this.state.recipes;
-    let recipeList = recipe.map( (each, index) => 
+    let recipeList;
 
-      <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
+    if (this.state.recipes) {
+      let recipe = this.state.recipes;
+      recipeList = recipe.map( (each, index) => 
 
-        <Image source={{uri: each.image }} style={{width: 300, height: 300, borderWidth: 1}}/>
-        
-        <Text>{' '}</Text>
+        <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
 
-        <Button
-          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
-          title='View Recipe'
-          onPress = { ()=>{ Linking.openURL(each.recipes)} }
-        />
+          <Image source={{uri: each.image }} style={{width: 300, height: 300, borderWidth: 1}}/>
+          
+          <Text>{' '}</Text>
 
-      </Card>
-    );
+          <Button
+            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
+            title='View Recipe'
+            onPress = { ()=>{ Linking.openURL(each.recipes)} }
+          />
+        </Card>
+      );
+    }
 
     return (
 
-      <ScrollView>
+      
       <View style={styles.viewStyle}>
         <Grid>
-        {recipeList}
+  
           <Row size={1}>
 
             <Col size={1}>
@@ -78,13 +80,18 @@ export default class ProfileScreen extends React.Component {
           <Row size ={3}>
 
             <Col style={styles.profileStyle}>
+              <ScrollView>
+                {recipeList}
+              </ScrollView>
+            </Col>
+
+            <Col style={styles.profileStyle}>
+
               <Button 
               title='Button'
               onPress={() => {this.props.navigation.navigate('Camera')}}
               />
-            </Col>
 
-            <Col style={styles.profileStyle}>
               <Button 
               title='Logout'
               onPress={() => {this.props.logout()}}
@@ -93,8 +100,9 @@ export default class ProfileScreen extends React.Component {
 
           </Row>
         </Grid>
+
       </View>
-      </ScrollView>
+      
     )
   }
 }
