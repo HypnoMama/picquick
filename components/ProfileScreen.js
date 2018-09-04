@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image } from 'react-native';
+import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, Linking } from 'react-native';
 import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 
@@ -48,13 +48,18 @@ export default class ProfileScreen extends React.Component {
         
         <Text>{' '}</Text>
 
-      </Card>
+        <Button
+          buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
+          title='View Recipe'
+          onPress = { ()=>{ Linking.openURL(each.recipes)} }
+        />
 
-      );
-      
+      </Card>
+    );
 
     return (
 
+      <ScrollView>
       <View style={styles.viewStyle}>
         <Grid>
         {recipeList}
@@ -89,6 +94,7 @@ export default class ProfileScreen extends React.Component {
           </Row>
         </Grid>
       </View>
+      </ScrollView>
     )
   }
 }

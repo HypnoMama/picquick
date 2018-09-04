@@ -116,7 +116,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
-          backgroundColor={'#fffaf0'}
+          //backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ email: text }) }
         />
@@ -128,7 +128,7 @@ export default class OpeningScreen extends React.Component {
           borderWidth={1}
           marginBottom={8}
           borderRadius={4}
-          backgroundColor={'#fffaf0'}
+          //backgroundColor={'#fffaf0'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ password: text }) }
         />
@@ -173,7 +173,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserName: text }) }
            />
@@ -184,7 +184,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserEmail: text }) }
            />
@@ -195,7 +195,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserPass: text }) }
            />
@@ -206,7 +206,7 @@ export default class OpeningScreen extends React.Component {
             borderWidth={1}
             marginBottom={8}
             borderRadius={4}
-            backgroundColor={'#fffaf0'}
+            //backgroundColor={'#fffaf0'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
            />
