@@ -1,8 +1,9 @@
 import React from 'react';
 import { AsyncStorage, View, Text, ActivityIndicator, StyleSheet, Image, Alert, Linking } from 'react-native';
-import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
+import { Card, ListItem, Button, Rating } from 'react-native-elements';
 import Review from './Rating';
 import ApiKeys from '../../ApiKeys';
+import Icon from 'react-native-vector-icons';
 
 export default class RecipeCard extends React.Component {
 
@@ -35,8 +36,9 @@ export default class RecipeCard extends React.Component {
   }
 
   onPressFunc(url, label, image) {
-    this.retrieveUser();
-    this.retrieveId();
+    AsyncStorage.getItem('user').then((user) => {
+      this.setState({'user': user})
+    })
     this.saveRecipe(url, label, image);
   }
 

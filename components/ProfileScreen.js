@@ -1,7 +1,8 @@
 import React from 'react';
 import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, Linking } from 'react-native';
-import { Card, ListItem, Button, Icon, Rating } from 'react-native-elements';
+import { Card, ListItem, Button, Rating } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import Icon from 'react-native-vector-icons';
 
 export default class ProfileScreen extends React.Component {
 
@@ -46,21 +47,21 @@ export default class ProfileScreen extends React.Component {
     let recipeList;
 
     if (this.state.recipes) {
+
       let recipe = this.state.recipes;
-      recipeList = recipe.map( (each, index) => 
+      recipeList = recipe.map( (each, index) =>
+          <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
 
-        <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
+            <Image source={{uri: each.image }} style={{width: 100, height: 100, borderWidth: 1}} resizeMode={'center'}/>
+            
+            <Text>{' '}</Text>
 
-          <Image source={{uri: each.image }} style={{width: 100, height: 100, borderWidth: 1}}/>
-          
-          <Text>{' '}</Text>
-
-          <Button
-            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578'}}
-            title='View Recipe'
-            onPress = { ()=>{ Linking.openURL(each.recipes)} }
-          />
-        </Card>
+            <Button
+              buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578' }}
+              title='View'
+              onPress = { ()=>{ Linking.openURL(each.recipes)} }
+            />
+          </Card>
       );
     }
 
@@ -70,14 +71,25 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.viewStyle}>
         <Grid>
   
-          <Row size={1}>
+          <Row size={1} style={{borderBottomWidth: 1, borderTopWidth: 1, backgroundColor: '#006578'}}>
 
             <Col size={1}>
               <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
+              <Text>{' '}</Text>
             </Col>
 
             <Col size={1}>
-              <Text style={styles.textStyle}>{this.state.user}</Text>
+              <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
+                <Text style={styles.textStyle}>{this.state.user}</Text>
+                <Button 
+                title='Logout'
+                fontSize={15}
+                icon={{ type: 'evilicon', name: 'close-o', size: 25 }}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#E85F55' }}
+                onPress={() => {this.props.logout()}}
+                />
+              </View>
+
             </Col>
 
           </Row>
@@ -85,24 +97,22 @@ export default class ProfileScreen extends React.Component {
           <Row size ={3}>
 
             <Col style={styles.profileStyle}>
-              <ScrollView>
+              <Button 
+                title='Take a Pic'
+                icon={{ type: 'evilicon', name: 'camera', size: 40 }}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginTop: 10, marginBottom:10, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578' }}
+                fontSize={25}
+                onPress={() => {this.props.navigation.navigate('Camera')}}
+              />
+              <View style={{borderBottomWidth: 1, width: '100%', alignItems: 'center'}}>
+                
+              </View>
+              <ScrollView style={{width: '100%', backgroundColor: '#006578'}}>
+                <Text>{' '}</Text>
+                <Text style={{alignSelf: 'center', color: '#FFFAF0', fontSize: 15}}>Saved Recipes</Text>
                 {recipeList}
               </ScrollView>
-            </Col>
 
-            <Col style={styles.profileStyle}>
-
-              <Button 
-              title='Button'
-              onPress={() => {this.props.navigation.navigate('Camera')}}
-              />
-
-              <Text>{' '}</Text>
-
-              <Button 
-              title='Logout'
-              onPress={() => {this.props.logout()}}
-              />
             </Col>
 
           </Row>
@@ -143,20 +153,32 @@ const styles = StyleSheet.create ({
     flex: 1,
     backgroundColor: '#1D8295',
   },
+  cardStyle: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFFAF0',
+    borderRadius: 10,
+    width: '70%',
+  },
   imageStyle: {
-    borderWidth: 1,
-    width: '100%',
-    height: '100%',
-    backgroundColor: '#1D8295',
+    alignSelf: 'center',
+    width: 140,
+    height: 140,
+    backgroundColor: '#006578',
   },
   textStyle: {
-    borderWidth: 1,
+    textAlign: 'center',
+    fontSize: 40,
+    color: '#FFFAF0',
+    //borderWidth: 1,
   },
   profileStyle: {
-    borderWidth: 1,
+    //borderWidth: 1,
+    alignItems: 'center',
   },
   avatarStyle: {
     backgroundColor: '#ffffff',
-    borderWidth: 1,
+    //borderWidth: 1,
   }
 });
