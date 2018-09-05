@@ -8,10 +8,10 @@ export default class LoadingScreen extends React.Component {
 
         <View style={styles.viewStyle}>
           <Text style={styles.loadText}>Loading</Text>
-          <ActivityIndicator size="large" color="#FFFAF0" />
+          <ActivityIndicator size="large" color="#FFFAF0"/>
           {/* <Image style={{flex: 1, width: 100}} source={require('../assets/Clarifai_Logo_FC.png')} resizeMode='contain'/> */}
 
-        <Image style={{flex: 1, width: 200}} source={require('../assets/edamam.png')} resizeMode='contain'/>
+          <Image style={{flex: 1, width: 250}} source={require('../assets/edamam.png')} resizeMode='contain'/>
 
         </View>
     )

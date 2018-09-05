@@ -89,7 +89,7 @@ export default class MyCamera extends React.Component {
 
                 <FlatList style={styles.flatview} />
 
-                <ActivityIndicator size="large" color="#FFFAF0" animating={this.state.isLoading} />
+                <ActivityIndicator size="large" animating={this.state.isLoading} />
 
                 <TouchableOpacity style={styles.cameraButton} onPress={this.detect}>
 

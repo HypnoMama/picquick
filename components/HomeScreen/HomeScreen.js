@@ -53,20 +53,16 @@ export default class HomeScreen extends React.Component {
      }
   }
 
-  async logout() {
-    try {
-      await AsyncStorage.removeItem('user');
-      this.setState({user: ''})
-    } catch(error){
-      console.log('there"s an error!')
-    }
-    try {
-      await AsyncStorage.removeItem('uuid');
-      this.setState({uuid: ''})
-    } catch(error) {
-      console.log("Whoops something went wrong")
-    }
+  logout() {
+    AsyncStorage.removeItem("uuid").then((value) => {
+      this.setState({"uuid": ''});
+    }).done();
+    AsyncStorage.removeItem('user').then((user) => {
+      this.setState({'user': ''})
+    }).done();
   }
+
+
 
   getData() {
     this.retrieveUser();

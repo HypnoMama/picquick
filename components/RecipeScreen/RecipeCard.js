@@ -36,8 +36,9 @@ export default class RecipeCard extends React.Component {
   }
 
   onPressFunc(url, label, image) {
-    this.retrieveUser();
-    this.retrieveId();
+    AsyncStorage.getItem('user').then((user) => {
+      this.setState({'user': user})
+    })
     this.saveRecipe(url, label, image);
   }
 

@@ -111,7 +111,7 @@ export default class OpeningScreen extends React.Component {
         
         <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
 
-        <TextInput 
+        <TextInput
           placeholder="Email"
           height={40}
           width={'70%'}
@@ -119,6 +119,7 @@ export default class OpeningScreen extends React.Component {
           marginBottom={8}
           borderRadius={4}
           //backgroundColor={'#fffaf0'}
+          underlineColorAndroid={'transparent'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ email: text }) }
         />
@@ -132,6 +133,7 @@ export default class OpeningScreen extends React.Component {
           borderRadius={4}
           secureTextEntry={true}
           //backgroundColor={'#fffaf0'}
+          underlineColorAndroid={'transparent'}
           textAlign={'center'}
           onChangeText={(text) => this.setState({ password: text }) }
         />
@@ -178,6 +180,7 @@ export default class OpeningScreen extends React.Component {
             marginBottom={8}
             borderRadius={4}
             //backgroundColor={'#fffaf0'}
+            underlineColorAndroid={'transparent'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserName: text }) }
            />
@@ -190,6 +193,7 @@ export default class OpeningScreen extends React.Component {
             marginBottom={8}
             borderRadius={4}
             //backgroundColor={'#fffaf0'}
+            underlineColorAndroid={'transparent'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserEmail: text }) }
            />
@@ -203,6 +207,7 @@ export default class OpeningScreen extends React.Component {
             borderRadius={4}
             secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
+            underlineColorAndroid={'transparent'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ newUserPass: text }) }
            />
@@ -216,6 +221,7 @@ export default class OpeningScreen extends React.Component {
             borderRadius={4}
             secureTextEntry={true}
             //backgroundColor={'#fffaf0'}
+            underlineColorAndroid={'transparent'}
             textAlign={'center'}
             onChangeText={(text) => this.setState({ confirmNewUserPass: text }) }
            />

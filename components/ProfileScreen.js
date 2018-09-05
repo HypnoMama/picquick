@@ -75,15 +75,16 @@ export default class ProfileScreen extends React.Component {
 
             <Col size={1}>
               <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
+              <Text>{' '}</Text>
             </Col>
 
             <Col size={1}>
               <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
-                <Text style={styles.textStyle}>{this.props.user}</Text>
-                <Text>{' '}</Text>
+                <Text style={styles.textStyle}>{this.state.user}</Text>
                 <Button 
                 title='Logout'
-                icon={{ type: 'evilicon', name: 'close-o', size: 30 }}
+                fontSize={15}
+                icon={{ type: 'evilicon', name: 'close-o', size: 25 }}
                 buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#E85F55' }}
                 onPress={() => {this.props.logout()}}
                 />
@@ -96,18 +97,19 @@ export default class ProfileScreen extends React.Component {
           <Row size ={3}>
 
             <Col style={styles.profileStyle}>
-              <Text>{' '}</Text>
               <Button 
                 title='Take a Pic'
-                icon={{ type: 'evilicon', name: 'camera', size: 30 }}
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom:10, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578' }}
+                icon={{ type: 'evilicon', name: 'camera', size: 40 }}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginTop: 10, marginBottom:10, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578' }}
+                fontSize={25}
                 onPress={() => {this.props.navigation.navigate('Camera')}}
               />
-              <Text>{' '}</Text>
-              <View style={{borderBottomWidth: 1}}>
-                <Text>Saved Recipes</Text>
+              <View style={{borderBottomWidth: 1, width: '100%', alignItems: 'center'}}>
+                
               </View>
-              <ScrollView>
+              <ScrollView style={{width: '100%', backgroundColor: '#006578'}}>
+                <Text>{' '}</Text>
+                <Text style={{alignSelf: 'center', color: '#FFFAF0', fontSize: 15}}>Saved Recipes</Text>
                 {recipeList}
               </ScrollView>
 
@@ -152,18 +154,23 @@ const styles = StyleSheet.create ({
     backgroundColor: '#1D8295',
   },
   cardStyle: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#FFFAF0',
     borderRadius: 10,
+    width: '70%',
   },
   imageStyle: {
     alignSelf: 'center',
-    width: 150,
-    height: 150,
+    width: 140,
+    height: 140,
     backgroundColor: '#006578',
   },
   textStyle: {
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 40,
+    color: '#FFFAF0',
     //borderWidth: 1,
   },
   profileStyle: {
