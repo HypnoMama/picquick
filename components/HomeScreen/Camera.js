@@ -17,6 +17,17 @@ export default class MyCamera extends React.Component {
     hasCameraPermission: null,
     headerVisible: true,
     isLoading: false,
+  }; 
+
+  static navigationOptions = ({ navigation }) => {
+    return {
+
+      headerRight: (
+        <TouchableOpacity onPress={() => {navigation.navigate('ProfileScreen')}}>
+          <Icon name="user" type='font-awesome' size={30} paddingRight={20} />
+        </TouchableOpacity>
+      )
+    };
   };
 
   async componentDidMount() {

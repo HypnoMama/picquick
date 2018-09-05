@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, Linking } from 'react-native';
+import { AsyncStorage, View, Text, StyleSheet, ActivityIndicator, Image, ScrollView, Linking, TouchableOpacity } from 'react-native';
 import { Card, ListItem, Button, Rating } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Icon from 'react-native-vector-icons';
@@ -71,9 +71,13 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.viewStyle}>
         <Grid>
   
-          <Row size={1} style={{borderBottomWidth: 1, borderTopWidth: 1, backgroundColor: '#006578', alignItems: 'center', justifyContent: 'center'}}>
+            <Row size={2} style={{alignItems: 'center', justifyContent: 'center'}}>
+              <Image style={styles.imageStyle} resizeMode='contain' source={require('./../assets/logo-full.png')} />
+            </Row>
 
-            <Col size={2}>
+            <Row size={1} style={{backgroundColor: '#1B8295', alignItems: 'center', justifyContent: 'center'}}>
+
+            <Col size={1}>
               {/*<Image style={styles.imageStyle} source={require('./../assets/logo.png')} />*/}
               <Text style={styles.textStyle}>{this.state.user}</Text>
 
@@ -85,7 +89,7 @@ export default class ProfileScreen extends React.Component {
                 title='Logout'
                 fontSize={15}
                 
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, backgroundColor: '#006578' }}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, backgroundColor: '#1B8295' }}
                 onPress={() => {this.props.logout()}}
                 />
               </View>
@@ -163,9 +167,8 @@ const styles = StyleSheet.create ({
   },
   imageStyle: {
     alignSelf: 'center',
-    width: 140,
-    height: 140,
-    backgroundColor: '#006578',
+    width: 150,
+    backgroundColor: '#1B8295',
   },
   textStyle: {
     textAlign: 'center',

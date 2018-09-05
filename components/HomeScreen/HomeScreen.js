@@ -1,5 +1,5 @@
 import React from 'react';
-import { AsyncStorage, View, Text, ScrollView, StyleSheet } from 'react-native';
+import { AsyncStorage, View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
 import MyCamera from './Camera';
 import OpeningScreen from './../OpeningScreen';
 import ProfileScreen from './../ProfileScreen';

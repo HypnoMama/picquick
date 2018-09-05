@@ -23,9 +23,7 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: 'Home',
     navigationOptions: ({ navigation }) => ({
-      headerTitle: (
-        <View style={{flexDirection: 'column', alignItems: 'center', width: '100%'}}><LogoTitle /></View>
-      ),
+
       headerStyle: {
         backgroundColor: '#1b8295',
       },
@@ -37,18 +35,9 @@ const RootStack = createStackNavigator(
 )
 
 export default class App extends React.Component {
-
   render() {
     return ( <RootStack /> )
-
   }
 }
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Image style={{flex: 0, width: 80, paddingBottom: 10, }} source={require('./assets/logo-full.png')} resizeMode='contain'/>
-    );
-  }
-}
 
