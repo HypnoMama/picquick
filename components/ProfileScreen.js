@@ -52,7 +52,7 @@ export default class ProfileScreen extends React.Component {
       recipeList = recipe.map( (each, index) =>
           <Card containerStyle={styles.cardStyle} title={each.label} key={index}>
 
-            <Image source={{uri: each.image }} style={{width: 100, height: 100, borderWidth: 1}} resizeMode={'center'}/>
+            <Image source={{uri: each.image }} style={{width: 100, height: 100 }} resizeMode={'center'}/>
             
             <Text>{' '}</Text>
 
@@ -70,41 +70,33 @@ export default class ProfileScreen extends React.Component {
       
       <View style={styles.viewStyle}>
         <Grid>
-  
-            <Row size={2} style={{alignItems: 'center', justifyContent: 'center'}}>
-              <Image style={styles.imageStyle} resizeMode='contain' source={require('./../assets/logo-full.png')} />
-            </Row>
 
-            <Row size={1} style={{backgroundColor: '#1B8295', alignItems: 'center', justifyContent: 'center'}}>
-
-            <Col size={1}>
-              {/*<Image style={styles.imageStyle} source={require('./../assets/logo.png')} />*/}
-              <Text style={styles.textStyle}>{this.state.user}</Text>
-
-            </Col>
-
-            <Col size={1}>
-              <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
-                <Button 
+            <Row size={1}>
+              <Button 
                 title='Logout'
                 fontSize={15}
-                
                 buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, backgroundColor: '#1B8295' }}
                 onPress={() => {this.props.logout()}}
-                />
-              </View>
-
-            </Col>
+              />
+            </Row>
+  
+            <Row size={2}>
+              <Col size={1} style={{alignItems: 'center', justifyContent: 'center'}}>
+                <Text style={styles.textStyle}>{this.state.user}</Text>
+              </Col>
+              <Col size={1}>
+                <Image style={styles.imageStyle} resizeMode='contain' source={require('./../assets/logo-full.png')} />
+              </Col>
 
           </Row>
 
-          <Row size ={7}>
+          <Row size={9}>
 
             <Col style={styles.profileStyle}>
               <Button 
                 title='Take a Pic'
                 icon={{ type: 'evilicon', name: 'camera', size: 40 }}
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginTop: 10, marginBottom:10, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578' }}
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginTop: 10, marginBottom:10, borderRadius: 8, borderWidth: 1, backgroundColor: '#006578', alignSelf: 'center'}}
                 fontSize={25}
                 onPress={() => {this.props.navigation.navigate('Camera')}}
               />
@@ -167,11 +159,14 @@ const styles = StyleSheet.create ({
   },
   imageStyle: {
     alignSelf: 'center',
+    height: 100,
     width: 150,
     backgroundColor: '#1B8295',
   },
   textStyle: {
+    alignSelf: 'center',
     textAlign: 'center',
+    justifyContent: 'center',
     fontSize: 40,
     color: '#FFFAF0',
     //borderWidth: 1,
@@ -179,6 +174,7 @@ const styles = StyleSheet.create ({
   profileStyle: {
     //borderWidth: 1,
     alignItems: 'center',
+    justifyContent: 'center',
   },
   avatarStyle: {
     backgroundColor: '#ffffff',
