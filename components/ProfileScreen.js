@@ -73,25 +73,28 @@ export default class ProfileScreen extends React.Component {
   
           <Row size={1} style={{borderBottomWidth: 1, borderTopWidth: 1, backgroundColor: '#006578', alignItems: 'center', justifyContent: 'center'}}>
 
+            <Col size={2}>
               {/*<Image style={styles.imageStyle} source={require('./../assets/logo.png')} />*/}
               <Text style={styles.textStyle}>{this.state.user}</Text>
 
-            {/*<Col size={1}>
+            </Col>
+
+            <Col size={1}>
               <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
                 <Button 
                 title='Logout'
                 fontSize={15}
-                icon={{ type: 'evilicon', name: 'close-o', size: 25 }}
-                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, borderWidth: 1, backgroundColor: '#E85F55' }}
+                
+                buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0, borderRadius: 8, backgroundColor: '#006578' }}
                 onPress={() => {this.props.logout()}}
                 />
               </View>
 
-            </Col>*/}
+            </Col>
 
           </Row>
 
-          <Row size ={8}>
+          <Row size ={7}>
 
             <Col style={styles.profileStyle}>
               <Button 
