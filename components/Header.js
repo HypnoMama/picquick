@@ -29,7 +29,7 @@ export default class TheHeader extends React.Component {
       
       <View>
 
-        {this.state.fontLoaded ? <Text style={styles.textStyle}></Text> : null}
+        {this.state.fontLoaded ? <Text style={styles.textStyle}>picQuik</Text> : null}
         
       </View>
 

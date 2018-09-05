@@ -71,16 +71,13 @@ export default class ProfileScreen extends React.Component {
       <View style={styles.viewStyle}>
         <Grid>
   
-          <Row size={1} style={{borderBottomWidth: 1, borderTopWidth: 1, backgroundColor: '#006578'}}>
+          <Row size={1} style={{borderBottomWidth: 1, borderTopWidth: 1, backgroundColor: '#006578', alignItems: 'center', justifyContent: 'center'}}>
 
-            <Col size={1}>
-              <Image style={styles.imageStyle} source={require('./../assets/logo.png')} />
-              <Text>{' '}</Text>
-            </Col>
+              {/*<Image style={styles.imageStyle} source={require('./../assets/logo.png')} />*/}
+              <Text style={styles.textStyle}>{this.state.user}</Text>
 
-            <Col size={1}>
+            {/*<Col size={1}>
               <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
-                <Text style={styles.textStyle}>{this.state.user}</Text>
                 <Button 
                 title='Logout'
                 fontSize={15}
@@ -90,11 +87,11 @@ export default class ProfileScreen extends React.Component {
                 />
               </View>
 
-            </Col>
+            </Col>*/}
 
           </Row>
 
-          <Row size ={3}>
+          <Row size ={8}>
 
             <Col style={styles.profileStyle}>
               <Button 
