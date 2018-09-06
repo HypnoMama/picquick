@@ -13,7 +13,7 @@
 * Take a photo of the main ingredients you'd like to use
 * Confirm that the image recognition has identified the correct foods and add any other ingredients you may want to incorporate
 * Receive a list of recipes
-* Save, review, and share your recipes!
+* Save your favourite recipes to make again and again!
 
 
 ### Screenshots
