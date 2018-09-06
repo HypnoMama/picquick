@@ -17,7 +17,7 @@ export default class Ingredient extends React.Component {
  
   filterValues(item) {
     let text = item.name.slice(0,1).toUpperCase() + item.name.slice(1,item.name.length);
-    return item.value > 0.8 ?
+    return item.value > 0.85 ?
     <TouchableHighlight style={styles.container}>
       <Text style={styles.textStyle}>{text}</Text>
     </TouchableHighlight>
