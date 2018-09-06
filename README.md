@@ -18,8 +18,8 @@
 
 ### Screenshots
 
-![Sign In]https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/opening-screen.jpg
-![Saved Recipes]https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/saved-recipes.jpg
-![Ingredients from Clarifai]https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/ingredients-from-photo-clarifai.jpg
-![Loading Screen]https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/edamam-logo-screen.jpg
-![Recipes from Edamam]https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/recipes-from-edamam.jpg
+![Sign In](https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/opening-screen.jpg)
+![Saved Recipes](https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/saved-recipes.jpg)
+![Ingredients from Clarifai](https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/ingredients-from-photo-clarifai.jpg)
+![Loading Screen](https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/edamam-logo-screen.jpg)
+![Recipes from Edamam](https://raw.githubusercontent.com/samueljohnwilson/picquick/master/assets/recipes-from-edamam.jpg)
